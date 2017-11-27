@@ -8,8 +8,6 @@ import BrowsePage from './components/BrowsePage';
 import ConnectPage from './components/ConnectPage';
 import ConnectSpotifyPage from './components/ConnectSpotifyPage';
 import PlaylistsPage from './components/PlaylistsPage';
-import PlaylistPage from './components/PlaylistPage';
-import Playlist2Page from './components/Playlist2Page';
 import NotFoundPage from './components/NotFoundPage';
 
 const routes = (
@@ -20,8 +18,6 @@ const routes = (
     <Route path="/connect" exact component={ConnectPage}/>
     <Route path="/connect/spotify" component={ConnectSpotifyPage}/>
     <Route path="/playlists" component={PlaylistsPage}/>
-    <Route path="/playlist" component={PlaylistPage}/>
-    <Route path="/playlist2" component={Playlist2Page}/>
     <Route path="*" component={NotFoundPage}/>
   </Route>
 );
