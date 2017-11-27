@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-import spotifyLogo from '../../images/spotify_logo.jpg';
-import appleMusicLogo from '../../images/applemusic_logo.png';
+// import spotifyLogo from '../../images/spotify_logo.jpg';
+// import appleMusicLogo from '../../images/applemusic_logo.png';
 
 const imageStyle = {
   width: '100px',
@@ -22,9 +22,9 @@ export default class ConnectPage extends React.Component {
     return (
       <div className="connect">
           <h2>Connect an external music streaming service</h2>
-          <Link to={`/connect/spotify`} style={linkStyle}><img src={spotifyLogo} style={imageStyle} /><span>Connect Spotify account</span></Link>
+          <Link to={`/connect/spotify`} style={linkStyle}><img src={`http://i.imgur.com/5yHUR2j.png`} style={imageStyle} /><span>Connect Spotify account</span></Link>
           <br />
-          <Link to={`/connect/applemusic`} style={linkStyle}><img src={appleMusicLogo} style={imageStyle} /><span>Connect Apple Music account</span></Link>
+          <Link to={`/connect/applemusic`} style={linkStyle}><img src={`http://i.imgur.com/2h2cHAJ.jpg`} style={imageStyle} /><span>Connect Apple Music account</span></Link>
       </div>
     );
   }
