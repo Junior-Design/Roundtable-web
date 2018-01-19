@@ -22,9 +22,9 @@ export default class ConnectPage extends React.Component {
     return (
       <div className="connect">
           <h2>Connect an external music streaming service</h2>
-          <Link to={`/connect/spotify`} style={linkStyle}><img src={`http://i.imgur.com/5yHUR2j.png`} style={imageStyle} /><span>Connect Spotify account</span></Link>
+          <Link to={`/connect/spotify`} style={linkStyle}><img src={`/assets/images/spotify_logo.jpg`} style={imageStyle} /><span>Connect Spotify account</span></Link>
           <br />
-          <Link to={`/connect/applemusic`} style={linkStyle}><img src={`http://i.imgur.com/2h2cHAJ.jpg`} style={imageStyle} /><span>Connect Apple Music account</span></Link>
+          <Link to={`/connect/applemusic`} style={linkStyle}><img src={`/assets/images/applemusic_logo.png`} style={imageStyle} /><span>Connect Apple Music account</span></Link>
       </div>
     );
   }
