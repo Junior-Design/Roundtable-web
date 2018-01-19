@@ -7,27 +7,20 @@ const babelLoaderQuery = {
 }
 
 module.exports = {
-  entry: path.join(__dirname, 'src', 'app-client.js'),
+  entry: path.join(__dirname, 'react', 'app-client.js'),
   output: {
-    path: path.join(__dirname, 'src', 'static', 'js'),
+    path: path.join(__dirname, 'static'),
     filename: 'bundle.js'
   },
   module: {
     loaders: [
       {
-        test: /\.(png|jpg|gif)$/,
-        loader: 'url-loader?limit=8192'
-      },
-      {
-        test: path.join(__dirname, 'src'),
+        test: path.join(__dirname, 'react'),
         loader: ['babel-loader?' + JSON.stringify(babelLoaderQuery)],
       }
     ]
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-    }),
     // new webpack.optimize.DedupePlugin(),
     // new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({

@@ -1,4 +1,3 @@
-// src/components/MainLayoutHeader.js
 import React from 'react';
 import { Link } from 'react-router';
 
@@ -7,6 +6,10 @@ const headerStyle = {
   marginBottom: '10px',
   borderBottom: '1px solid black',
   padding: '10px 0'
+}
+const headerLinkStyle = {
+  color: 'black',
+  textDecoration: 'none'
 }
 const linkStyle = {
   margin: '0 20px',
@@ -18,7 +21,7 @@ export default class MainLayoutHeader extends React.Component {
   render() {
     return (
       <div className="mainLayoutHeader" style={headerStyle}>
-        <h1>Roundtable</h1>
+        <Link to={`/`} style={headerLinkStyle}><h1>Roundtable</h1></Link>
         <br />
         <Link to={`/browse`} style={linkStyle}>Browse</Link>
         <Link to={`/playlists`} style={linkStyle}>Playlists</Link>
