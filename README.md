@@ -3,6 +3,8 @@
 
 Junior Design project - web app that lets you collaborate on platform-agnostic playlists
 
+Team 7302 - Riley Osborn, Phillip Reeder, Gabor Siffel, Cal Stephens, Jake Waldner
+
 ### Required Tools
 
 - NodeJS, npm
@@ -29,3 +31,7 @@ Once the server is running, you don't have to shut it off in order to re-bundle 
     + The entrypoint is **react/app-client.js**.
 - The **server.go** file is the entrypoint for the web server.
     + New api/non-webpage routes can be added in this file.
+
+### License
+
+[MIT License](LICENSE)
