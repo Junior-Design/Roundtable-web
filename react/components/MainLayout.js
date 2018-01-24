@@ -32,17 +32,13 @@ export default class MainLayout extends React.Component {
 
   handleLogin(user) {
     this.setState((prevState, props) => {
-      let newState = prevState
-      newState.loggedIn = true
-      return newState
+      return {user: user}
     })
   }
 
   handleLogout() {
     this.setState((prevState, props) => {
-      let newState = prevState
-      newState.loggedIn = false
-      return newState
+      return {user: null}
     })
   }
 
