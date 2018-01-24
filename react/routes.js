@@ -4,6 +4,7 @@ import { Route, IndexRoute } from 'react-router'
 import MainLayout from './components/MainLayout';
 import IndexPage from './components/IndexPage';
 import LoginPage from './components/LoginPage';
+import LogoutPage from './components/LogoutPage';
 import BrowsePage from './components/BrowsePage';
 import ConnectPage from './components/ConnectPage';
 import ConnectSpotifyPage from './components/ConnectSpotifyPage';
@@ -15,6 +16,7 @@ const routes = (
   <Route path="/" component={MainLayout}>
     <IndexRoute                     component={IndexPage} />
     <Route path="/login"            component={LoginPage} />
+    <Route path="/logout"           component={LogoutPage} />
     <Route path="/browse"           component={BrowsePage} />
     <Route path="/connect" exact    component={ConnectPage} />
     <Route path="/connect/spotify"  component={ConnectSpotifyPage} />

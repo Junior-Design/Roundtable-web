@@ -1,21 +1,46 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-const formStyle = {
-  textAlign: 'center'
-}
+const uiConfig = {
+  signInSuccessUrl: '/browse',
+  signInOptions: [
+    firebase.auth.EmailAuthProvider.PROVIDER_ID,
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID
+  ],
+  callbacks: {
+    signInSuccess: function(user) {
+      console.log('hello', user)
+      // if (self.props.onSignIn) {
+      //   self.props.onSignIn(user);
+      // }
+      return false;
+    }
+  }
+  // Terms of service url.
+  // tosUrl: '<your-tos-url>'
+};
+
+// Initialize the FirebaseUI Widget using Firebase.
+let authUI = new firebaseui.auth.AuthUI(firebase.auth());
+
+
 
 export default class LoginPage extends React.Component {
+
+  componentDidMount() {
+    authUI.start('#firebaseui-auth-container', uiConfig);
+  }
+
+  componentWillUnmount() {
+    authUI.reset();
+  }
+
   render() {
     return (
       <div className="login">
         <h2>Login</h2>
         <br />
-        <form action="/browse" style={formStyle}>
-        Username: <input type="text" /><br /><br />
-        Password: <input type="password" /><br /><br />
-        <input type="submit" value="Login" /><br /><br />
-        </form>
+        <div id="firebaseui-auth-container"></div>
       </div>
     );
   }

@@ -25,6 +25,7 @@ export default class MainLayoutHeader extends React.Component {
         <br />
         <Link to={`/browse`} style={linkStyle}>Browse</Link>
         <Link to={`/playlists`} style={linkStyle}>Playlists</Link>
+        { firebase.auth().currentUser ? <Link to={`/logout`} style={linkStyle}>Logout</Link> : null }
       </div>
     );
   }
