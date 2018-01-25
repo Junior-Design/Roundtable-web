@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
-import MainLayoutHeader from './MainLayoutHeader';
-import MainLayoutFooter from './MainLayoutFooter';
+import LandingLayoutHeader from './LandingLayoutHeader';
+import LandingLayoutFooter from './LandingLayoutFooter';
 
 const containerStyle = {
   display: 'block',
@@ -11,8 +11,7 @@ const containerStyle = {
 }
 
 
-
-export default class MainLayout extends React.Component {
+export default class LandingLayout extends React.Component {
 
   constructor(props) {
     super(props)
@@ -50,11 +49,11 @@ export default class MainLayout extends React.Component {
     return (
       <div style={containerStyle}>
         <header>
-          <MainLayoutHeader />
+          <LandingLayoutHeader />
         </header>
         <div className="app-content">{this.props.children}</div>
         <footer>
-          <MainLayoutFooter />
+          <LandingLayoutFooter />
         </footer>
       </div>
     );

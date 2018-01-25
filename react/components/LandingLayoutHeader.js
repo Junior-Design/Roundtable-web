@@ -17,16 +17,12 @@ const linkStyle = {
   textDecoration: 'none'
 }
 
-//logout link is shown in main header depending on wheather a currentUser is logged in
-export default class MainLayoutHeader extends React.Component {
+export default class LandingLayoutHeader extends React.Component {
   render() {
     return (
-      <div className="mainLayoutHeader" style={headerStyle}>
+      <div className="landingLayoutHeader" style={headerStyle}>
         <Link to={`/`} style={headerLinkStyle}><h1>Roundtable</h1></Link>
         <br />
-        <Link to={`/browse`} style={linkStyle}>Browse</Link>
-        <Link to={`/playlists`} style={linkStyle}>Playlists</Link>
-        { firebase.auth().currentUser ? <Link to={`/logout`} style={linkStyle}>Logout</Link> : null }
       </div>
     );
   }
