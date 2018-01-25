@@ -13,6 +13,8 @@ ssl :
 setup :
 	npm install
 	go get -u github.com/gorilla/mux
+	go get -u github.com/zmb3/spotify
+	go get -u github.com/google/uuid
 	@echo Setup complete.
 
 # UNIX only :(
