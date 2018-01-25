@@ -1,13 +1,15 @@
 const webpack = require('webpack');
 const path = require('path');
 
+REACT_DIR = path.join(__dirname, 'react')
+
 const babelLoaderQuery = {
   cacheDirectory: 'babel_cache',
   presets: ['react', 'es2015']
 }
 
 module.exports = {
-  entry: path.join(__dirname, 'react', 'app-client.js'),
+  entry: path.join(REACT_DIR, 'app-client.jsx'),
   output: {
     path: path.join(__dirname, 'static'),
     filename: 'bundle.js'
@@ -16,7 +18,7 @@ module.exports = {
     loaders: [
       {
         test: path.join(__dirname, 'react'),
-        loader: ['babel-loader?' + JSON.stringify(babelLoaderQuery)],
+        loader: ['babel-loader?' + JSON.stringify(babelLoaderQuery)]
       }
     ]
   },
@@ -30,5 +32,8 @@ module.exports = {
       beautify: false,
       dead_code: true
     })
-  ]
+  ],
+  resolve: {
+    extensions: ['.js', '.jsx']
+  }
 };
