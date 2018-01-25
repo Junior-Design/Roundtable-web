@@ -27,10 +27,11 @@ Once the server is running, you don't have to shut it off in order to re-bundle 
 
 - The **assets** directory contains static assets publicly accessible to anyone and served as plain files by the web server.
 - The **react** directory contains the front-end source code.
-    + New webpage routes can be added in **react/routes.js**.
-    + The entrypoint is **react/app-client.js**.
+    + New webpage routes can be added in **react/routes.jsx**.
+    + The entrypoint is **react/app-client.jsx**.
 - The **server.go** file is the entrypoint for the web server.
     + New api/non-webpage routes can be added in this file.
+- The **static** directory contains the served HTML file as well as the output of the ReactJS bundler: **bundle.js**.
 
 ### License
 
