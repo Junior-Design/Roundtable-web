@@ -18,14 +18,25 @@ const linkStyle = {
 }
 
 export default class ConnectPage extends React.Component {
+    
+  connectToSpotifyClicked() {
+    fetch("/spotify-auth")
+      .then(res => res.json())
+      .then(function(response) {
+        var spotifyAuthUrl = response["AuthenticationUrl"]
+        window.location = spotifyAuthUrl
+      })
+  }
+  
   render() {
     return (
       <div className="connect">
           <h2>Connect an external music streaming service</h2>
-          <Link to={`/connect/spotify`} style={linkStyle}><img src={`/assets/images/spotify_logo.jpg`} style={imageStyle} /><span>Connect Spotify account</span></Link>
+          <Link onClick={this.connectToSpotifyClicked} style={linkStyle}><img src={`/assets/images/spotify_logo.jpg`} style={imageStyle} /><span>Connect Spotify account</span></Link>
           <br />
           <Link to={`/connect/applemusic`} style={linkStyle}><img src={`/assets/images/applemusic_logo.png`} style={imageStyle} /><span>Connect Apple Music account</span></Link>
       </div>
     );
   }
+  
 }
