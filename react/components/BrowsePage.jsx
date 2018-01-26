@@ -15,7 +15,7 @@ export default class BrowsePage extends React.Component {
     return (
       <div className="browse">
         <div style={rightStyle}>
-          <Link to={`/connect`} style={linkStyle}> <Button1>Connect a music streaming service</Button1></Link>
+          <Link to={`/connect`} style={linkStyle}> <Button1>Connect a music streaming service</Button1> </Link>
         </div>
         <h2>Popular playlists</h2>
         <h2>Recommended for you</h2>

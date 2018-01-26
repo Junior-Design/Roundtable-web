@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 const footerStyle = {
   width: '100%',
   marginTop: '10px',
-  borderTop: '1px solid black',
+  borderTop: '3px solid #B49594',
   padding: '10px 0'
 }
 

@@ -4,11 +4,11 @@ import { Link } from 'react-router';
 const headerStyle = {
   width: '100%',
   marginBottom: '10px',
-  borderBottom: '1px solid black',
+  borderBottom: '3px solid #B49594',
   padding: '10px 0'
 }
 const headerLinkStyle = {
-  color: 'black',
+  color: '#BCABAE',
   textDecoration: 'none'
 }
 const linkStyle = {
@@ -17,12 +17,34 @@ const linkStyle = {
   textDecoration: 'none'
 }
 
+const loginLinkStyle = {
+  color: '#F2EEEA',
+  textDecoration: 'none'
+}
+
+const headerLayoutLeftStyle = {
+  width: '49%',
+  fontSize: '2em',
+  fontWeight: 'bold'
+}
+
+const headerLayoutRightStyle = {
+  width: '49%',
+  float: 'right',
+  lineHeight: '2em',
+  textAlign: 'right'
+}
+
 export default class LandingLayoutHeader extends React.Component {
   render() {
     return (
       <div className="landingLayoutHeader" style={headerStyle}>
-        <Link to={`/`} style={headerLinkStyle}><h1>Roundtable</h1></Link>
-        <br />
+        <div style={headerLayoutRightStyle}>
+          <Link to={`/login`} style={loginLinkStyle}>Login</Link> or <Link to={`/register`} style={loginLinkStyle}>create an account</Link>
+        </div>
+        <div style={headerLayoutLeftStyle}>
+          <Link to={`/`} style={headerLinkStyle}>roundtable</Link>
+        </div>
       </div>
     );
   }
