@@ -9,11 +9,10 @@ const uiConfig = {
   ],
   callbacks: {
     signInSuccess: function(user) {
-      console.log('hello', user)
-      // if (self.props.onSignIn) {
-      //   self.props.onSignIn(user);
-      // }
-      return false;
+        // if this user hasn't connected any streaming services yet, we should send then to `/connect` instead.
+        window.location = "/browse"
+
+        return true
     }
   }
   // Terms of service url.
