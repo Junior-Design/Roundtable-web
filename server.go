@@ -27,8 +27,9 @@ func createRoutes() *mux.Router {
 	})
 
 	// Handle API requests
-	// r.HandleFunc("/.../...", ...)
-	// r.HandleFunc("/.../...", ...)
+	r.HandleFunc("/test_api_route", func(w http.ResponseWriter, req *http.Request) {
+		fmt.Fprintf(w, "test_api_route response")
+	})
 
 	// Handle static asset requests
 	r.PathPrefix("/assets/").Handler(http.StripPrefix("/assets/", http.FileServer(http.Dir("assets/"))))

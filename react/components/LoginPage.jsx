@@ -9,7 +9,6 @@ const uiConfig = {
   ],
   callbacks: {
     signInSuccess: function(user) {
-      console.log('hello', user)
       // if (self.props.onSignIn) {
       //   self.props.onSignIn(user);
       // }

@@ -18,6 +18,11 @@ export default class BrowsePage extends React.Component {
         </div>
         <h2>Popular playlists</h2>
         <h2>Recommended for you</h2>
+        <br />
+        <br />
+        <br />
+        <br />
+        <Link to={`/testapi`} style={linkStyle}>Temp, test server api</Link>
       </div>
     );
   }

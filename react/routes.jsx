@@ -11,6 +11,7 @@ import BrowsePage from './components/BrowsePage';
 import ConnectPage from './components/ConnectPage';
 import ConnectSpotifyPage from './components/ConnectSpotifyPage';
 import PlaylistsPage from './components/PlaylistsPage';
+import TestAPIPage from './components/TestAPIPage';
 import NotFoundPage from './components/NotFoundPage';
 
 
@@ -18,16 +19,17 @@ import NotFoundPage from './components/NotFoundPage';
 const routes = (
   <Route path="/">
     <Route component={LandingLayout}>
-      <IndexRoute                     component={IndexPage} />
-      <Route path="login"            component={LoginPage} />
+      <IndexRoute                   component={IndexPage} />
+      <Route path="login"           component={LoginPage} />
     </Route>
     <Route component={MainLayout}>
-      <Route path="logout"           component={LogoutPage} />
-      <Route path="browse"           component={BrowsePage} />
-      <Route path="connect" exact    component={ConnectPage} />
-      <Route path="connect/spotify"  component={ConnectSpotifyPage} />
-      <Route path="playlists"        component={PlaylistsPage} />
-      <Route path="*"                 component={NotFoundPage} />
+      <Route path="logout"          component={LogoutPage} />
+      <Route path="browse"          component={BrowsePage} />
+      <Route path="connect" exact   component={ConnectPage} />
+      <Route path="connect/spotify" component={ConnectSpotifyPage} />
+      <Route path="playlists"       component={PlaylistsPage} />
+      <Route path="/testapi"        component={TestAPIPage} />
+      <Route path="*"               component={NotFoundPage} />
     </Route>
   </Route>
 );
