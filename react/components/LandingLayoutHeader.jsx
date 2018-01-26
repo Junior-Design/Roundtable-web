@@ -19,7 +19,8 @@ const linkStyle = {
 
 const loginLinkStyle = {
   color: '#F2EEEA',
-  textDecoration: 'none'
+  textDecoration: 'none',
+  fontWeight: 'bold'
 }
 
 const headerLayoutLeftStyle = {
@@ -40,7 +41,7 @@ export default class LandingLayoutHeader extends React.Component {
     return (
       <div className="landingLayoutHeader" style={headerStyle}>
         <div style={headerLayoutRightStyle}>
-          <Link to={`/login`} style={loginLinkStyle}>Login</Link> or <Link to={`/register`} style={loginLinkStyle}>create an account</Link>
+          <Link to={`/login`} style={loginLinkStyle}>login</Link> or <Link to={`/register`} style={loginLinkStyle}>create an account</Link>
         </div>
         <div style={headerLayoutLeftStyle}>
           <Link to={`/`} style={headerLinkStyle}>roundtable</Link>
