@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { Button1 } from './buttons';
+import { Button1 } from '../components/buttons';
 
 const rightStyle = {
   textAlign: 'right'

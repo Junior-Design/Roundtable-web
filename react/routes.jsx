@@ -4,15 +4,15 @@ import { Route, IndexRoute } from 'react-router'
 import MainLayout from './components/MainLayout';
 import LandingLayout from './components/LandingLayout';
 
-import IndexPage from './components/IndexPage';
-import LoginPage from './components/LoginPage';
-import LogoutPage from './components/LogoutPage';
-import BrowsePage from './components/BrowsePage';
-import ConnectPage from './components/ConnectPage';
-import ConnectSpotifyPage from './components/ConnectSpotifyPage';
-import PlaylistsPage from './components/PlaylistsPage';
-import TestAPIPage from './components/TestAPIPage';
-import NotFoundPage from './components/NotFoundPage';
+import IndexPage from './pages/IndexPage';
+import LoginPage from './pages/LoginPage';
+import LogoutPage from './pages/LogoutPage';
+import BrowsePage from './pages/BrowsePage';
+import ConnectPage from './pages/ConnectPage';
+import ConnectSpotifyPage from './pages/ConnectSpotifyPage';
+import PlaylistsPage from './pages/PlaylistsPage';
+import TestAPIPage from './pages/TestAPIPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 
 //Order of routes matter!! * be last
