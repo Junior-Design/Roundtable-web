@@ -1,0 +1,28 @@
+.serviceLoginButton {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    margin: 0px 15px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    width: 110px;
+    height: 110px;
+}
+
+.serviceLoginGroup {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.logoHeader {
+    width: 100%;
+    text-align: center;
+    height: 400px;
+}
+
+.logo {
+    line-height: 400px;
+    font-size: 50px;
+}

@@ -6,19 +6,15 @@ import LandingLayoutFooter from './LandingLayoutFooter';
 const containerStyle = {
   display: 'block',
   margin: '0 auto',
-  width: '800px',
-  fontFamily: 'Rodina-Regular',
   src: "url('assets/fonts/Rodina-Regular.otf')",
-  color: '#BCABAE',
-  backgroundColor: '#3A0824'
+  backgroundColor: 'white'
 }
 
 const containerBigStyle = {
   display: 'block',
   margin: '0 auto',
-  width: '800px',
   fontFamily: 'Arial',
-  backgroundColor: '#3A0824',
+  backgroundColor: 'white',
   width: '100%',
   height: '100%'
 }
@@ -62,13 +58,7 @@ export default class LandingLayout extends React.Component {
     return (
       <div style={containerBigStyle}>
         <div style={containerStyle}>
-          <header>
-            <LandingLayoutHeader />
-          </header>
           <div className="app-content">{this.props.children}</div>
-          <footer>
-            <LandingLayoutFooter />
-          </footer>
         </div>
       </div>
     );
