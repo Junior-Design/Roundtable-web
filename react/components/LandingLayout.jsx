@@ -7,16 +7,6 @@ const containerStyle = {
   display: 'block',
   margin: '0 auto',
   src: "url('assets/fonts/Rodina-Regular.otf')",
-  backgroundColor: 'white'
-}
-
-const containerBigStyle = {
-  display: 'block',
-  margin: '0 auto',
-  fontFamily: 'Arial',
-  backgroundColor: 'white',
-  width: '100%',
-  height: '100%'
 }
 
 
@@ -56,7 +46,7 @@ export default class LandingLayout extends React.Component {
 
   render() {
     return (
-      <div style={containerBigStyle}>
+      <div className="containerBig">
         <div style={containerStyle}>
           <div className="app-content">{this.props.children}</div>
         </div>
