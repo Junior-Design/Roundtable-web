@@ -10,10 +10,18 @@ class ServiceLoginButton extends React.Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
-  } 
+  }
 
   handleClick() {
-    alert("Clicked " + this.props.service);
+    if (this.props.service == "Spotify") {
+      fetch("/spotify-auth")
+        .then(res => res.json())
+        .then(function(response) {
+          var spotifyAuthUrl = response["AuthenticationUrl"]
+          window.location = spotifyAuthUrl
+        })
+    }
+
   }
 
   render() {
@@ -23,6 +31,15 @@ class ServiceLoginButton extends React.Component {
         </button>
     );
   }
+}
+
+function connectToSpotify() {
+  fetch("/spotify-auth")
+    .then(res => res.json())
+    .then(function(response) {
+      var spotifyAuthUrl = response["AuthenticationUrl"]
+      window.location = spotifyAuthUrl
+    })
 }
 
 export default class IndexPage extends React.Component {
