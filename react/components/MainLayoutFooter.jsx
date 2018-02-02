@@ -16,6 +16,7 @@ const wrapperStyle = {
 
 const buttonStyle = {
   height: "100%",
+  width: "65px",
   backgroundColor: "#202020",
   color: "white",
   margin: "0 10px"
