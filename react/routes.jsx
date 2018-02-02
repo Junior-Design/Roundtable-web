@@ -10,6 +10,7 @@ import LogoutPage from './pages/LogoutPage';
 import BrowsePage from './pages/BrowsePage';
 import ConnectPage from './pages/ConnectPage';
 import ConnectSpotifyPage from './pages/ConnectSpotifyPage';
+import SpotifyConfirmationPage from './pages/SpotifyConfirmationPage';
 import PlaylistsPage from './pages/PlaylistsPage';
 import TestAPIPage from './pages/TestAPIPage';
 import NotFoundPage from './pages/NotFoundPage';
@@ -27,6 +28,7 @@ const routes = (
       <Route path="browse"          component={BrowsePage} />
       <Route path="connect" exact   component={ConnectPage} />
       <Route path="connect/spotify" component={ConnectSpotifyPage} />
+     	<Route path="confirm/spotify"	component={SpotifyConfirmationPage} />
       <Route path="playlists"       component={PlaylistsPage} />
       <Route path="/testapi"        component={TestAPIPage} />
       <Route path="*"               component={NotFoundPage} />

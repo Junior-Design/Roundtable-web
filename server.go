@@ -44,10 +44,7 @@ func createRoutes() *mux.Router {
 
 	// request a Spotify Authentication session
 	r.HandleFunc("/spotify-auth", func(w http.ResponseWriter, r *http.Request) {
-
-		redirectUrl := "https://localhost:443" // after the auth is complete, Spotify will redirect the user to this url
-		// ^^ once we implement this on the front-end, this'll need to change to a specific post-auth page
-
+		redirectUrl := "https://localhost:443/confirm/spotify" // after the auth is complete, Spotify will redirect the user to this url
 		auth := spotify.NewAuthenticator(redirectUrl, spotify.ScopeUserReadPrivate)
 
 		auth.SetAuthInfo(

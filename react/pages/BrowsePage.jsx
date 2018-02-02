@@ -14,16 +14,12 @@ export default class BrowsePage extends React.Component {
   render() {
     return (
       <div className="browse">
-        <div style={rightStyle}>
-          <Link to={`/connect`} style={linkStyle}> <Button1>Connect a music streaming service</Button1> </Link>
-        </div>
         <h2>Popular playlists</h2>
+				<br/>
+				<br/>
         <h2>Recommended for you</h2>
-        <br />
-        <br />
-        <br />
-        <br />
-        <Link to={`/testapi`} style={linkStyle}>Temp, test server api</Link>
+				<br/>
+				<br/>
       </div>
     );
   }
