@@ -46,10 +46,8 @@ export default class LandingLayout extends React.Component {
 
   render() {
     return (
-      <div className="containerBig">
-        <div style={containerStyle}>
+      <div className="container">
           <div className="app-content">{this.props.children}</div>
-        </div>
       </div>
     );
   }
