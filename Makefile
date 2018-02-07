@@ -4,7 +4,7 @@ bundle :
 	@echo Done.
 
 runserver run :
-	@go python server.py
+	@go python3 server.py
 
 ssl :
 	openssl ecparam -genkey -name secp384r1 -out server.key
@@ -17,6 +17,6 @@ setup :
 
 # UNIX only :(
 clean :
-	@rm -f static/bundle.js
+	@rm -f public/static/bundle.js
 	@rm -f npm-debug.log
 	@echo Done.
