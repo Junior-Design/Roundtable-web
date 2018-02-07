@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 
-REACT_DIR = path.join(__dirname, 'public/react')
+REACT_DIR = path.join(__dirname, 'react')
 
 const babelLoaderQuery = {
   cacheDirectory: 'babel_cache',
@@ -11,7 +11,7 @@ const babelLoaderQuery = {
 module.exports = {
   entry: path.join(REACT_DIR, 'app-client.jsx'),
   output: {
-    path: path.join(__dirname, 'static'),
+    path: path.join(__dirname, 'public/static'),
     filename: 'bundle.js'
   },
   module: {

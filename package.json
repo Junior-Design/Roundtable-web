@@ -29,5 +29,8 @@
     "react-router": "^2.6.1",
     "superagent": "^3.8.2",
     "webpack": "^3.0.0"
+  },
+  "dependencies": {
+    "flask": "^0.2.10"
   }
 }
