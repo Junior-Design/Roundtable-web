@@ -4,7 +4,7 @@ bundle :
 	@echo Done.
 
 runserver run :
-	@go run server.go
+	@go python server.py
 
 ssl :
 	openssl ecparam -genkey -name secp384r1 -out server.key
@@ -12,9 +12,7 @@ ssl :
 
 setup :
 	npm install
-	go get -u github.com/gorilla/mux
-	go get -u github.com/zmb3/spotify
-	go get -u github.com/google/uuid
+	pip install -r requirements.txt
 	@echo Setup complete.
 
 # UNIX only :(

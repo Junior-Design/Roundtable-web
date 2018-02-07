@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 
-REACT_DIR = path.join(__dirname, 'react')
+REACT_DIR = path.join(__dirname, 'public/react')
 
 const babelLoaderQuery = {
   cacheDirectory: 'babel_cache',
