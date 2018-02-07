@@ -4,7 +4,7 @@ bundle :
 	@echo Done.
 
 runserver run :
-	@go python3 server.py
+	python3 server.py
 
 ssl :
 	openssl ecparam -genkey -name secp384r1 -out server.key
