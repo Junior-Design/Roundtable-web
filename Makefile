@@ -1,19 +1,14 @@
 
+setup :
+	@echo Installing server dependencies...
+	@((npm install) && (pip3 install -q -r server/dependencies.txt) && (echo Setup successful)) || (echo Try again with Sudo enabled)
+
 bundle :
 	@npm run bundle
 	@echo Done.
 
 runserver run :
-	python3 server.py
-
-ssl :
-	openssl ecparam -genkey -name secp384r1 -out server.key
-	openssl req -new -x509 -sha256 -key server.key -out server.crt -days 3650
-
-setup :
-	npm install
-	pip3 install -r requirements.txt
-	@echo Setup complete.
+	python3 server/server.py
 
 # UNIX only :(
 clean :
