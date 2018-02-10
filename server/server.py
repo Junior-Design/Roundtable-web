@@ -1,11 +1,8 @@
 import json
 import os
 import time
-from flask import Flask, Response, request
-
-app = Flask(__name__, static_url_path='', static_folder='public')
-app.add_url_rule('/', 'root', lambda: app.send_static_file('static/index.html'))
-app.add_url_rule('/bundle.js', 'bundle', lambda: app.send_static_file('static/bundle.js'))
+from flask_app import app
+import google_play
 
 # @app.route('/api/comments', methods=['GET', 'POST'])
 # def comments_handler():
