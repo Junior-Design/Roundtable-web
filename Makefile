@@ -8,7 +8,7 @@ bundle :
 	@echo Done.
 
 runserver run :
-	python3 server/server.py
+	@(python3 server/server.py) || ((echo Couldn\'t start server... Trying setup.) && (sudo make setup) && (python3 server/server.py))
 
 # UNIX only :(
 clean :
