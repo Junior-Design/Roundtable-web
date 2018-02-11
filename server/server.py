@@ -2,7 +2,8 @@ import json
 import os
 import time
 from flask_app import app
-import google_play
+import google_play_endpoints
+import spotify_endpoints
 
 # @app.route('/api/comments', methods=['GET', 'POST'])
 # def comments_handler():

@@ -1,2 +1,3 @@
 Flask==0.12.2
 gmusicapi==11.0.0
+spotify-api==0.0.8

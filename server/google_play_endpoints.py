@@ -2,13 +2,12 @@ from flask import request
 from flask_app import app
 import gmusicapi
 import model
-import json
 
 #################
 # API Endpoints #
 #################
 
-@app.route('/google-play/playlists', methods=['GET', 'POST'])
+@app.route('/google-play/playlists', methods=['GET'])
 def playlists():
     client = gmusicapi_client()
     playlists_response = client.get_all_playlists()
