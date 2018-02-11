@@ -96,3 +96,10 @@ Golang gitignore
 
 # Project-local glide cache, RE: https://github.com/Masterminds/glide/issues/736
 .glide/
+
+===================
+Python gitignore
+===================
+*/__pycache__/*
+__pycache__/
+__pycache__/*
