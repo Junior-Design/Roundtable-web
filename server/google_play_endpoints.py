@@ -9,6 +9,8 @@ import model
 #################
 # API Endpoints #
 #################
+# Google Play Music credentials need to be included in the http header of any requests to these endpoints.
+#    - `google-play-username` and `google-play-password`
 
 @app.route('/google-play/playlists', methods=['GET'])
 def google_play_playlists():
