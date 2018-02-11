@@ -3,12 +3,15 @@ from flask_app import app
 import gmusicapi
 import model
 
+# `gmusicapi` API Reference:
+# https://unofficial-google-music-api.readthedocs.io/en/latest/
+
 #################
 # API Endpoints #
 #################
 
 @app.route('/google-play/playlists', methods=['GET'])
-def playlists():
+def google_play_playlists():
     client = gmusicapi_client()
     playlists_response = client.get_all_playlists()
     playlists = list(map(model.Playlist.from_google_play_response, playlists_response))
