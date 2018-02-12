@@ -53,7 +53,7 @@ const containerStyle = {
   height: '100%',
   backgroundImage: 'url("/assets/images/blur.jpg")',
   backgroundSize: '100% 100%',
-  src: 'url("/assets/fonts/Rodina-Regular.otf")',
+  fontFamily: 'Rodina',
   color: 'white'
 }
 
