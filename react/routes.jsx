@@ -20,14 +20,14 @@ const routes = (
   <Route path="/">
     <IndexRoute                     component={IndexPage} />
     <Route component={MainLayout}>
-      <Route path="login"           component={LoginPage} />
-      <Route path="logout"          component={LogoutPage} />
+      <Route path="confirm/spotify"	component={SpotifyConfirmationPage} />
       <Route path="browse"          component={BrowsePage} />
+      <Route path="playlists"       component={PlaylistsPage} />
+      {/* <Route path="login"           component={LoginPage} />
+      <Route path="logout"          component={LogoutPage} />
       <Route path="connect" exact   component={ConnectPage} />
       <Route path="connect/spotify" component={ConnectSpotifyPage} />
-     	<Route path="confirm/spotify"	component={SpotifyConfirmationPage} />
-      <Route path="playlists"       component={PlaylistsPage} />
-      <Route path="/testapi"        component={TestAPIPage} />
+      <Route path="/testapi"        component={TestAPIPage} /> */}
       <Route path="*"               component={NotFoundPage} />
     </Route>
   </Route>
