@@ -3,6 +3,12 @@ setup :
 	@echo Installing server dependencies...
 	@((npm install) && (pip3 install -q -r server/dependencies.txt) && (echo Setup successful)) || (echo Try again with Sudo enabled)
 
+# Command Prompt - Run as administrator
+setupwin :
+	@echo Installing server dependencies...
+	npm install
+	pip3 install -q -r server/dependencies.txt
+
 bundle :
 	@npm run bundle
 	@echo Done.
