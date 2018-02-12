@@ -8,15 +8,17 @@ Team 7302 - Riley Osborn, Phillip Reeder, Gabor Siffel, Cal Stephens, Jake Waldn
 ### Required Tools
 
 - NodeJS, npm
-- Go
-- openssl (command line tool)
+- Python 3 (command line: python3)
+- openssl (command line tool) (for generating SSL certificate)
 
 ### Usage
 
     make setup      # Set up dev environment (installs necessary dependencies)
-    make ssl        # Generates a new self-signed SSL certificate (openssl)
-    make run        # Run Go server
+    make setupwin   # Set up dev environment on Windows
     make bundle     # Generates bundled ReactJS JavaScript file
+    make run        # Run server (without encryption)
+    make runhttps   # Run server using https
+    make genssl     # Generates a new self-signed SSL certificate (openssl)
     make clean      # Removes results of `make bundle` (doesn't work on Windows)
 
 Be sure to generate an SSL certificate before trying to run the server.
@@ -25,13 +27,13 @@ Once the server is running, you don't have to shut it off in order to re-bundle 
 
 ### Project Layout
 
-- The **assets** directory contains static assets publicly accessible to anyone and served as plain files by the web server.
+- The **public** directory contains files publicly accessible to anyone and served as plain files by the web server.
 - The **react** directory contains the front-end source code.
     + New webpage routes can be added in **react/routes.jsx**.
     + The entrypoint is **react/app-client.jsx**.
-- The **server.go** file is the entrypoint for the web server.
+- The **server** directory contains the source-code for the web server.
+    + The entrypoint is **server/server.py**.
     + New api/non-webpage routes can be added in this file.
-- The **static** directory contains the served HTML file as well as the output of the ReactJS bundler: **bundle.js**.
 
 ### License
 

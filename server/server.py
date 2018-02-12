@@ -1,9 +1,12 @@
+import sys
 import json
 import os
 import time
 from flask_app import app
 import google_play_endpoints
 import spotify_endpoints
+
+PORT = 3000
 
 # Flask `app` defined in /server/flask_app.py so it can be
 # imported in other files without making circular dependencies
@@ -16,4 +19,7 @@ app.add_url_rule('/bundle.js', 'bundle', lambda: app.send_static_file('static/bu
 # Google Play Music endpoints are in /server/google_play_endpoints.py
 
 if __name__ == '__main__':
-    app.run(port=int(os.environ.get("PORT", 3000)), debug=True)
+    if '--https' in sys.argv:
+        app.run(port=int(os.environ.get("PORT", PORT)), debug=True, ssl_context=('server.crt', 'server.key'))
+    else:
+        app.run(port=int(os.environ.get("PORT", PORT)), debug=True)
