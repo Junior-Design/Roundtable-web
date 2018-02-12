@@ -17,7 +17,7 @@ def google_play_playlists():
     client = gmusicapi_client()
     playlists_response = client.get_all_playlists()
     playlists = list(map(model.Playlist.from_google_play_response, playlists_response))
-    return model.json(playlists)
+    return model.to_json(playlists)
 
 ##########################
 # gmusicapi Client Setup #
