@@ -28,14 +28,13 @@ def spotify_playlists():
 @app.route('/spotify/auth', methods=['GET'])
 def spotify_auth():
     authorize_url = spotify_oauth().authorize_url
-    return model.json({"authUrl" : authorize_url})
+    return model.to_json({"authUrl" : authorize_url})
 
 @app.route('/spotify/auth/callback', methods=['GET'])
 def spotify_auth_callback():
     oauth = spotify_oauth()
     oauth.request_token(request.url)
     token = oauth.token
-    print(token)
     return redirect("/confirm/spotify/?token=" + token['access_token'] + "&expires_in=" + str(token['expires_in']))
 
 def spotify_oauth():
