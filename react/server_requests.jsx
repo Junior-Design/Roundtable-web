@@ -10,6 +10,12 @@ const server = {
       .type('json')
       .send(JSON.stringify({ data: data, user: user() }))
       .then(callback)
+  },
+  get(route, data, callback) {
+    request.get(route)
+      .type('json')
+      .send(JSON.stringify({ data: data, user: user() }))
+      .then(callback)
   }
 }
 

@@ -2,9 +2,14 @@ import sys
 import json
 import os
 import time
+
 from flask_app import app
+
+import global_vars
 import google_play_endpoints
 import spotify_endpoints
+
+
 
 PORT = 3000
 
@@ -20,6 +25,7 @@ app.add_url_rule('/bundle.js', 'bundle', lambda: app.send_static_file('static/bu
 
 if __name__ == '__main__':
     if '--https' in sys.argv:
+        global_vars.protocol = 'https'
         app.run(port=int(os.environ.get("PORT", PORT)), debug=True, ssl_context=('server.crt', 'server.key'))
     else:
         app.run(port=int(os.environ.get("PORT", PORT)), debug=True)

@@ -1,6 +1,8 @@
 from flask import request, redirect, url_for
 from flask_app import app
-import model 
+
+import global_vars
+import model
 import spotify
 
 # `spotify` API Reference:
@@ -41,16 +43,16 @@ def spotify_oauth():
     return spotify.OAuth(
         '1bfb013a55474809b040bd6934ff7ee5',
         '53eb0eba01dd44aebaa0414d550b2aaa',
-        redirect_uri='http://localhost:3000/spotify/auth/callback',
+        redirect_uri=(global_vars.protocol + '://localhost:3000/spotify/auth/callback'),
         scopes=['user-read-private', 'user-top-read'])
 
 def spotify_client():
     user_provided_token = request.headers.get("spotify-token")
     oauth = spotify_oauth()
-    
+
     # this is a hack but it works
     # (supposed to be the same token object returned by `oauth.request_token` but python can't tell the difference)
     oauth.token = {'access_token': user_provided_token}
-    
+
     return spotify.Client(oauth).api
 
