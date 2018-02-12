@@ -21,7 +21,7 @@ Team 7302 - Riley Osborn, Phillip Reeder, Gabor Siffel, Cal Stephens, Jake Waldn
     make genssl     # Generates a new self-signed SSL certificate (openssl)
     make clean      # Removes results of `make bundle` (doesn't work on Windows)
 
-Be sure to generate an SSL certificate before trying to run the server.
+Be sure to generate an SSL certificate before trying to run the https version of the server.
 
 Once the server is running, you don't have to shut it off in order to re-bundle (in a different terminal) the front-end code.
 
