@@ -24,7 +24,7 @@ const serviceLoginButtonStyle = {
   color: 'white',
   margin: '10px auto',
   textAlign: 'center',
-  fontSize: '16px',
+  fontSize: '20px',
   fontFamily: 'Rodina',
   width: '300px',
   height: '60px',
