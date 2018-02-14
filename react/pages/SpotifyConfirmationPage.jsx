@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-import server from '../server_requests'
+import comms from '../comms'
 
 
 export default class SpotifyConfirmationPage extends React.Component {

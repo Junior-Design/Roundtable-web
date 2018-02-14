@@ -21,10 +21,7 @@ const routes = (
       <Route path="confirm/spotify"	component={SpotifyConfirmationPage} />
       <Route path="browse"          component={BrowsePage} />
       <Route path="playlists"       component={PlaylistsPage} />
-      {/*<Route path="logout"          component={LogoutPage} />
-      <Route path="connect" exact   component={ConnectPage} />
-      <Route path="connect/spotify" component={ConnectSpotifyPage} />
-      <Route path="/testapi"        component={TestAPIPage} /> */}
+      {/* <Route path="/testapi"        component={TestAPIPage} /> */}
       <Route path="*"               component={NotFoundPage} />
     </Route>
   </Route>
