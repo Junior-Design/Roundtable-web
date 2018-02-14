@@ -28,13 +28,13 @@ const comms = {
   post : function(route, data, callback) {
     request.post(route)
       .type('json')
-      .send(JSON.stringify({ data: data, user: user() }))
+      .send(JSON.stringify({ data: data }))
       .then(callback)
   },
   get : function(route, data, callback) {
     request.get(route)
       .type('json')
-      .send(JSON.stringify({ data: data, user: user() }))
+      .send(JSON.stringify({ data: data }))
       .then(callback)
   }
 }
