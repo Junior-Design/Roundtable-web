@@ -3,13 +3,13 @@ import json
 import os
 import time
 
-from flask import Flask, make_response
+from flask import Flask, send_from_directory
 
 import global_vars
 import google_play_endpoints
 import spotify_endpoints
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="../public/static")
 
 
 PORT = 3000
@@ -18,12 +18,12 @@ PORT = 3000
 # imported in other files without making circular dependencies
 
 # Set up React routes
-app.add_url_rule('/bundle.js', 'bundle', lambda: app.send_static_file('static/bundle.js'))
+app.add_url_rule('/bundle.js', 'bundle', lambda: app.send_static_file('bundle.js'))
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
-def index(path):
-    return make_response('index.html')
+def serve(path):
+    return send_from_directory('../public/static', 'index.html')
 
 # Spotify endpoints are in /server/spotify_endpoints.py
 # Google Play Music endpoints are in /server/google_play_endpoints.py
