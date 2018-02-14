@@ -20,6 +20,10 @@ PORT = 3000
 # Set up React routes
 app.add_url_rule('/bundle.js', 'bundle', lambda: app.send_static_file('bundle.js'))
 
+@app.route('/assets/<path:path>')
+def serve_assets(path):
+    return send_from_directory('../public/assets', path)
+
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def serve(path):
