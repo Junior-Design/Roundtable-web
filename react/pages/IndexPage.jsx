@@ -19,7 +19,8 @@ function connectToGooglePlay() {
 
 
 const serviceLoginButtonStyle = {
-  backgroundColor: '#4CAF50', // Green
+  //backgroundColor: '#4CAF50', // Green
+  backgroundColor: '#031738',
   border: 'none',
   color: 'white',
   margin: '10px auto',
