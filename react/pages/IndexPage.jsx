@@ -13,8 +13,7 @@ function connectToSpotify() {
 }
 
 function connectToGooglePlay() {
-  window.alert('Google Play not supported yet!')
-  // TODO
+  window.location = '/login'
 }
 
 
