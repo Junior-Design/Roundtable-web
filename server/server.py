@@ -15,7 +15,9 @@ PORT = 3000
 # imported in other files without making circular dependencies
 
 # Set up React routes
-app.add_url_rule('/bundle.js', 'bundle', lambda: app.send_static_file('bundle.js'))
+@app.route('/bundle.js')
+def serve_bundle():
+    return send_from_directory('../public/static', 'bundle.js')
 
 @app.route('/assets/<path:path>')
 def serve_assets(path):
