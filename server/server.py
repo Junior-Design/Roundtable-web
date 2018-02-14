@@ -2,15 +2,12 @@ import sys
 import json
 import os
 import time
-
-from flask import Flask, send_from_directory
+from flask_app import app
+from flask import send_from_directory
 
 import global_vars
 import google_play_endpoints
 import spotify_endpoints
-
-app = Flask(__name__, static_folder="../public/static")
-
 
 PORT = 3000
 
