@@ -8,8 +8,29 @@ import comms from '../comms'
 export default class SpotifyConfirmationPage extends React.Component {
 
   componentDidMount() {
+    
+    // (1) take the `spotify-token` from the URL's query parameters,
+    // (2) save it in a cookie,
+    // (3) and then redirect to /browse
+    
+		function queryParameter(name, url) {
+    	var url = window.location.href;
+      name = name.replace(/[\[\]]/g, "\\$&");
+      var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+      results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+    
+    var token = queryParameter("token")
+    var expires_in = parseInt(queryParameter("expires_in"))
+    
+    var expireDate = new Date()
+    expireDate.setTime(expireDate.getTime() + expires_in)
+    document.cookie = "spotify-token=" + token + "; expires=" + expireDate + "; path=/"
+    
     window.location = "/browse"
-		//TODO: the auth token is part of the url query params. We need to pluck that out and save it as a cookie, presumably.
   }
 
   render() {
