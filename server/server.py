@@ -9,10 +9,11 @@ import global_vars
 import google_play_endpoints
 import spotify_endpoints
 
-PORT = 3000
-
 # Flask `app` defined in /server/flask_app.py so it can be
 # imported in other files without making circular dependencies
+
+# Spotify endpoints are in /server/spotify_endpoints.py
+# Google Play Music endpoints are in /server/google_play_endpoints.py
 
 # Set up React routes
 @app.route('/bundle.js')
@@ -25,15 +26,13 @@ def serve_assets(path):
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
-def serve(path):
+def serve_index(path):
     return send_from_directory('../public/static', 'index.html')
 
-# Spotify endpoints are in /server/spotify_endpoints.py
-# Google Play Music endpoints are in /server/google_play_endpoints.py
-
+# Run server
 if __name__ == '__main__':
     if '--https' in sys.argv:
         global_vars.protocol = 'https'
-        app.run(port=int(os.environ.get("PORT", PORT)), debug=True, ssl_context=('server.crt', 'server.key'))
+        app.run(port=int(os.environ.get("PORT", global_vars.port)), debug=True, ssl_context=('server.crt', 'server.key'))
     else:
-        app.run(port=int(os.environ.get("PORT", PORT)), debug=True)
+        app.run(port=int(os.environ.get("PORT", global_vars.port)), debug=True)
