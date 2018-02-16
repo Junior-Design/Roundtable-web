@@ -4,13 +4,13 @@ import request from 'superagent'
 
 const comms = {
   setCookie : function(name,value,expires) {
-    var expires = "";
-    if (days) {
+    var expires_t = "";
+    if (expires) {
         var date = new Date();
         date.setTime(date.getTime() + expires);
-        expires = "; expires=" + date.toUTCString();
+        expires_t = "; expires=" + date.toUTCString();
     }
-    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    document.cookie = name + "=" + (value || "")  + expires_t + "; path=/";
   },
   getCookie : function(name) {
     var nameEQ = name + "=";
@@ -40,6 +40,10 @@ const comms = {
 
     if (callback)
       c.then(callback)
+  },
+  getPlaylists(callback) {
+    let service = comms.getCookie('service')
+    comms.get('/' + service + '/playlists', {}, callback)
   }
 }
 

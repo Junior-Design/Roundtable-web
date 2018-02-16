@@ -25,6 +25,7 @@ export default class SpotifyConfirmationPage extends React.Component {
 
     var token = queryParameter("token")
     var expires_in = parseInt(queryParameter("expires_in"))
+    comms.setCookie('music-service', 'spotify', expires_in)
     comms.setCookie('spotify-token', token, expires_in)
 
     window.location = "/browse"
