@@ -49,9 +49,9 @@ export default class MainLayout extends React.Component {
 
   render() {
     return (
-      <div style={containerStyle}>
+      <div className="main-content">
         <MainLayoutHeader />
-        <div className="app-content">{this.props.children}</div>
+        <div>{this.props.children}</div>
         <MainLayoutFooter />
       </div>
     );
