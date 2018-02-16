@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router';
 import { Button1 } from '../components/buttons';
 
+import comms from '../comms';
+
 const rightStyle = {
   textAlign: 'right'
 }
@@ -11,6 +13,13 @@ const linkStyle = {
 }
 
 export default class BrowsePage extends React.Component {
+
+  componentDidMount() {
+    comms.getPlaylists(function(resp) {
+      console.log(resp)
+    })
+  }
+
   render() {
     return (
       <div className="browse">
