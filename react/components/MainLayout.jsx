@@ -5,18 +5,6 @@ import MainLayoutFooter from './MainLayoutFooter';
 
 
 
-const containerStyle = {
-  display: 'block',
-  margin: '0 auto',
-  src: 'url("assets/fonts/Rodina-Regular.otf")',
-  backgroundImage: 'url("images/blur.jpg")',
-  color: 'white',
-  width: '100%',
-  height: '100%'
-}
-
-
-
 export default class MainLayout extends React.Component {
 
   constructor(props) {
@@ -49,9 +37,9 @@ export default class MainLayout extends React.Component {
 
   render() {
     return (
-      <div style={containerStyle}>
+      <div>
         <MainLayoutHeader />
-        <div className="app-content">{this.props.children}</div>
+        <div className="main-content">{this.props.children}</div>
         <MainLayoutFooter />
       </div>
     );
