@@ -26,16 +26,20 @@ const comms = {
     document.cookie = name+'=; Max-Age=-99999999;';
   },
   post : function(route, data, callback) {
-    request.post(route)
+    let c = request.post(route)
       .type('json')
       .send(JSON.stringify({ data: data }))
-      .then(callback)
+
+    if (callback)
+      c.then(callback)
   },
   get : function(route, data, callback) {
-    request.get(route)
+    let c = request.get(route)
       .type('json')
       .send(JSON.stringify({ data: data }))
-      .then(callback)
+
+    if (callback)
+      c.then(callback)
   }
 }
 
