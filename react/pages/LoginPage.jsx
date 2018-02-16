@@ -4,11 +4,15 @@ import { Link } from 'react-router';
 import LoginForm from "../components/LoginForm"
 
 
-class LoginPage extends React.Component {
+export default class LoginPage extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
   render() {
     return (
       <div className="login-content">
-        <LoginForm />
+        <LoginForm service="Google Play"/>
       </div>
     );
   }
