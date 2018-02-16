@@ -13,7 +13,8 @@ const formStyle = {
   background:"#FFFFFF",
   margin:"0 auto 100px",
   padding:"30px",
-  textAlign:"center"
+  textAlign:"center",
+  borderRadius: '5px',
 }
 
 const inputStyle = {
@@ -25,16 +26,20 @@ const inputStyle = {
   padding: "15px",
   boxSizing: "border-box",
   fontSize: "14px",
+  borderRadius: '5px',
 }
 
 const buttonStlye = {
   textTransform: "uppercase",
   outline: "0",
-  background: "#4CAF50",
+  backgroundColor: '#031738',
+  border: 'none',
+  color: 'white',
+  fontFamily: 'Rodina',
   width: "100%",
   border: "0",
   padding: "15px",
-  color: "#FFFFFF",
+  borderRadius: '5px',
   fontSize: "14px",
   transition: "all 0.3 ease"
 }
