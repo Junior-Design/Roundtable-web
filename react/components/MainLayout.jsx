@@ -10,7 +10,7 @@ const containerStyle = {
   margin: '0 auto',
   src: 'url("assets/fonts/Rodina-Regular.otf")',
   backgroundImage: 'url("images/blur.jpg")',
-  color: 'white',
+  color: 'black',
   width: '100%',
   height: '100%'
 }
