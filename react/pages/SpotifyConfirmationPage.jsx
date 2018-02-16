@@ -8,11 +8,11 @@ import comms from '../comms'
 export default class SpotifyConfirmationPage extends React.Component {
 
   componentDidMount() {
-    
+
     // (1) take the `spotify-token` from the URL's query parameters,
     // (2) save it in a cookie,
     // (3) and then redirect to /browse
-    
+
 		function queryParameter(name, url) {
     	var url = window.location.href;
       name = name.replace(/[\[\]]/g, "\\$&");
@@ -22,14 +22,11 @@ export default class SpotifyConfirmationPage extends React.Component {
       if (!results[2]) return '';
       return decodeURIComponent(results[2].replace(/\+/g, " "));
     }
-    
+
     var token = queryParameter("token")
     var expires_in = parseInt(queryParameter("expires_in"))
-    
-    var expireDate = new Date()
-    expireDate.setTime(expireDate.getTime() + expires_in)
-    document.cookie = "spotify-token=" + token + "; expires=" + expireDate + "; path=/"
-    
+    comms.setCookie('spotify-token', token, expires_in)
+
     window.location = "/browse"
   }
 

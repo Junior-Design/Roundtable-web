@@ -3,11 +3,11 @@ import request from 'superagent'
 
 
 const comms = {
-  setCookie : function(name,value,days) {
+  setCookie : function(name,value,expires) {
     var expires = "";
     if (days) {
         var date = new Date();
-        date.setTime(date.getTime() + (days*24*60*60*1000));
+        date.setTime(date.getTime() + expires);
         expires = "; expires=" + date.toUTCString();
     }
     document.cookie = name + "=" + (value || "")  + expires + "; path=/";
