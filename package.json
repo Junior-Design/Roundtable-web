@@ -31,6 +31,7 @@
     "webpack": "^3.0.0"
   },
   "dependencies": {
-    "flask": "^0.2.10"
+    "flask": "^0.2.10",
+    "react-responsive-sidebar": "^0.1.16"
   }
 }
