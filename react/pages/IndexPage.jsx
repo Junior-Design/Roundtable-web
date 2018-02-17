@@ -52,8 +52,6 @@ class ServiceLoginButton extends React.Component {
 const containerStyle = {
   width: '100%',
   height: '100%',
-  backgroundImage: 'url("/assets/images/blur.jpg")',
-  backgroundSize: '100% 100%',
   color: 'white'
 }
 
