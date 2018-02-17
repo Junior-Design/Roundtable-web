@@ -9,6 +9,10 @@ const imageStyle = {
   verticalAlign: 'middle'
 }
 
+const playlistNameStyle = {
+  marginRight: '10px',
+}
+
 function getPlaylistData() {
   //server.get('/spotify/', {}, function(resp) {
     //console.log(resp)
@@ -24,7 +28,7 @@ export class PlaylistTableItem extends React.Component {
 				<div className="icon"><img src={this.props.playlist.img_url} style={imageStyle} /></div>
 			</td>
 			<td>
-				<p name="playlisttitle"> {this.props.playlist.name}</p>
+				<p name="playlisttitle" style={playlistNameStyle}>{this.props.playlist.name}</p>
 			</td>
 			<td>
 				<p name="description"> {this.props.playlist.description}</p>
