@@ -29,7 +29,7 @@ const inputStyle = {
   borderRadius: '5px',
 }
 
-const buttonStlye = {
+const buttonStyle = {
   textTransform: "uppercase",
   outline: "0",
   backgroundColor: '#031738',
@@ -45,19 +45,43 @@ const buttonStlye = {
 }
 
 export default class LoginForm extends React.Component {
+  
   constructor(props) {
     super(props)
+    
+    this.state = {
+      username: '',
+      password: '',
+    }
   }
 
   render() {
     return (
       <div style={compStyle}>
-        <form style={formStyle}>
-            <input style={inputStyle} type="text" placeholder="username" required/>
-            <input style={inputStyle} type="password" placeholder="password" required/>
-            <button style={buttonStlye}>login to {this.props.service}</button>
+        <form style={formStyle} onSubmit={ (event) => this.formSubmitted(this, event) }>
+            <input style={inputStyle} type="text" placeholder="username" onChange={ (event) => this.state.username = event.target.value } required/>
+            <input style={inputStyle} type="password" placeholder="password" onChange={ (event) => this.state.password = event.target.value } required/>
+            <button style={buttonStyle}>login to {this.props.service}</button>
         </form>
       </div>
     );
   }
+  
+  formSubmitted(form, event) {
+    // stop the form action from refreshing the page
+    event.preventDefault()
+    
+    if (form.state.username == '' 
+      || form.state.password == '' 
+      || form.state.username == undefined 
+      || form.state.password == undefined) 
+    {
+      return
+    }
+    
+    form.props.handler(form.state)
+  }
+  
+  
+  
 }

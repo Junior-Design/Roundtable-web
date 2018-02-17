@@ -16,8 +16,8 @@ const linkStyle = {
 export default class BrowsePage extends React.Component {
 
   componentDidMount() {
-    comms.getPlaylists(function(resp) {
-      console.log(resp)
+    comms.getPlaylists(function(playlists) {
+      console.log(playlists)
     })
   }
 
