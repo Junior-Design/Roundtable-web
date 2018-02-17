@@ -4,14 +4,15 @@ import { Link } from 'react-router';
 const headerStyle = {
   width: '100%',
   height: '50px',
-  borderBottom: '1px solid black'
+  borderBottom: '1px solid white'
 }
 const headerLinkStyle = {
   color: 'black',
   textDecoration: 'none'
 }
 const titleStyle = {
-  margin: '14px 0 0 58px'
+  marginTop: '14px',
+  marginLeft: '30px',
 }
 
 
@@ -31,8 +32,6 @@ export default class MainLayoutHeader extends React.Component {
     return (
       <div className="mainLayoutHeader" style={headerStyle}>
         <h2 style={titleStyle}>Roundtable</h2>
-    
-        { firebase.auth().currentUser ? <Link to={`/logout`} style={linkStyle}>Logout</Link> : null }
       </div>
     );
   }

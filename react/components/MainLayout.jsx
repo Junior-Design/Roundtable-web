@@ -29,36 +29,15 @@ export default class MainLayout extends React.Component {
      }
 
      this.onNavButton = this.onNavButton.bind(this);
-
-    // let this_ = this
-    // firebase.auth().onAuthStateChanged(function(user) {
-    //   if (user) {
-    //     this_.handleLogin(user)
-    //   } else {
-    //     this_.handleLogout()
-    //   }
-    // });
   }
 
   onNavButton(props) {
 
   }
 
-  // handleLogin(user) {
-  //   this.setState((prevState, props) => {
-  //     return {user: user}
-  //   })
-  // }
-
-  // handleLogout() {
-  //   this.setState((prevState, props) => {
-  //     return {user: null}
-  //   })
-  // }
-
   render() {
     const items = [
-      <SidebarItem> </SidebarItem>,
+      <br />,
       <Link to='/browse' style={linkStyle}><SidebarItem nav="browse">Browse</SidebarItem></Link>,
       <Link to='/playlists' style={linkStyle}><SidebarItem nav="playlists">Playlists</SidebarItem></Link>,
       <Link to='/friends' style={linkStyle}><SidebarItem nav="friends">Friends</SidebarItem></Link>,
@@ -68,7 +47,7 @@ export default class MainLayout extends React.Component {
       <div>
         <Sidebar content={items} onItemSelected={this.onNavButton}>
         <MainLayoutHeader/>
-        <div className="main-content">{this.props.children}</div>
+        <div className="main-content" style={{paddingLeft: '30px'}}>{this.props.children}</div>
         </Sidebar>
       </div>
     );
