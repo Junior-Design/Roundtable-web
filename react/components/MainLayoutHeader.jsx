@@ -12,7 +12,7 @@ const headerLinkStyle = {
 }
 const titleStyle = {
   marginTop: '14px',
-  marginLeft: '30px',
+  marginLeft: '58px',
 }
 
 
