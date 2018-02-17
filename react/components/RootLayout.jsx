@@ -12,7 +12,8 @@ const containerStyle = {
   fontFamily: 'Rodina',
   color: 'white',
   width: '100%',
-  height: '100%'
+  height: '100%',
+  overflowY: 'scroll'
 }
 
 
