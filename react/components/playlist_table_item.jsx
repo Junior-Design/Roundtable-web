@@ -21,13 +21,13 @@ export class PlaylistTableItem extends React.Component {
     return (
   		<tr>
 			<td>
-				<div className="icon"><img src={`/assets/images/applemusic_logo.png`} style={imageStyle} /></div>
+				<div className="icon"><img src={this.props.playlist.img_url} style={imageStyle} /></div>
 			</td>
 			<td>
-				<p name="playlisttitle"> This is the playlist title    </p>
+				<p name="playlisttitle"> {this.props.playlist.name}</p>
 			</td>
 			<td>
-				<p name="description"> This is the description title</p>
+				<p name="description"> {this.props.playlist.description}</p>
 			</td>
 		</tr>
     );
