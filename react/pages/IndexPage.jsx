@@ -5,9 +5,8 @@ import comms from '../comms'
 
 
 function connectToSpotify() {
-  comms.get('/spotify/auth', [], {}, function(resp) {
-    console.log(resp)
-    var spotifyAuthUrl = JSON.parse(resp.text)["authUrl"]
+  comms.get('/spotify/auth', [], {}, function(response) {
+    var spotifyAuthUrl = response.authUrl
     window.location = spotifyAuthUrl // redirect
   })
 }
