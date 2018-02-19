@@ -12,23 +12,18 @@ const imageStyle = {
   verticalAlign: 'middle'
 }
 
-//we can replace ,a. with link later<Link onClick={this.connectToSpotifyClicked} style={linkStyle}><img src={`/assets/images/spotify_logo.jpg`} style={imageStyle} /><span>Connect Spotify account</span></Link>
-//wordlimit needs to be put on description somehow
 export class PlaylistTable extends React.Component {
 
 	componentWillMount() {
 		this.state = {"playlists": []}
-		console.log(this.state)
+
 		let component = this
     comms.getPlaylists(function(playlists) {
-      console.log(playlists)
       component.setState({"playlists": playlists})
-      console.log(component.state)
     })
   }
 
   render() {
-  	console.log("attempting render")
   	let playlistitems = this.state.playlists.map(function(playlist) {
   		return (<PlaylistTableRow playlist={playlist}/>)
   	})

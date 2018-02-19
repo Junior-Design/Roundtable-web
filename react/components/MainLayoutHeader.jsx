@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 const headerStyle = {
   width: '100%',
-  height: '50px',
+  height: '55px',
   borderBottom: '1px solid white'
 }
 const headerLinkStyle = {
@@ -11,7 +11,7 @@ const headerLinkStyle = {
   textDecoration: 'none'
 }
 const titleStyle = {
-  marginTop: '14px',
+  marginTop: '8px',
   marginLeft: '58px',
 }
 
@@ -31,7 +31,7 @@ export default class MainLayoutHeader extends React.Component {
   render() {
     return (
       <div className="mainLayoutHeader" style={headerStyle}>
-        <h2 style={titleStyle}>Roundtable</h2>
+        <h1 style={titleStyle}>Roundtable</h1>
       </div>
     );
   }

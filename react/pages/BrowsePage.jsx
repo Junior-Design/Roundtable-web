@@ -24,13 +24,8 @@ export default class BrowsePage extends React.Component {
   render() {
     return (
       <div className="browse">
-        {/* <h2>Popular playlists</h2>
-				<br/> */}
-        <h2>Your playlists</h2>
-        <br />
+        <h1>Your playlists</h1>
         <PlaylistTable />
-				{/* <br/>
-        <h2>Recommended for you</h2> */}
 				<br/>
 				<br/>
       </div>

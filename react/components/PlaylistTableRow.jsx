@@ -19,6 +19,7 @@ const TableRow = styled.tr`
 
 const TableCell = styled.td`
   padding-right: 10px;
+  padding-bottom: 10px;
 `;
 
 export class PlaylistTableRow extends React.Component {
@@ -40,7 +41,7 @@ export class PlaylistTableRow extends React.Component {
           <div className="icon"><img src={this.state.image} style={imageStyle} /></div>
         </TableCell>
         <TableCell>
-          <p name="playlisttitle">{this.props.playlist.name}</p>
+          <p name="playlisttitle" style={{"fontSize": "25px"}}>{this.props.playlist.name}</p>
         </TableCell>
         <TableCell>
           <p name="description">{this.props.playlist.description}</p>
