@@ -22,11 +22,22 @@ const TableCell = styled.td`
 `;
 
 export class PlaylistTableRow extends React.Component {
+  
+  componentWillMount() {
+    if (this.props.playlist.image_url != undefined 
+      && this.props.playlist.image_url != "") 
+    {
+      this.state = {"image": this.props.playlist.image_url}
+    } else {
+      this.state = {"image": '/assets/images/music-placeholder.png'}
+    }
+  }
+  
   render() {
     return (
   		<TableRow>
         <TableCell>
-          <div className="icon"><img src={this.props.playlist.img_url} style={imageStyle} /></div>
+          <div className="icon"><img src={this.state.image} style={imageStyle} /></div>
         </TableCell>
         <TableCell>
           <p name="playlisttitle">{this.props.playlist.name}</p>
