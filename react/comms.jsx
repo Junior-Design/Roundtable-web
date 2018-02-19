@@ -6,9 +6,9 @@ const comms = {
   setCookie : function(name,value,expires) {
     var expires_t = "";
     if (expires) {
-        var date = new Date();
-        date.setTime(date.getTime() + expires);
-        expires_t = "; expires=" + date.toUTCString();
+      var date = new Date();
+      date.setTime(date.getTime() + (expires * 1000));
+      expires_t = "; expires=" + date.toUTCString();
     }
     document.cookie = name + "=" + (value || "")  + expires_t + "; path=/";
   },
