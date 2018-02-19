@@ -28,7 +28,7 @@ class Playlist:
         print(response)
         return Playlist(
             name=response['name'],
-            description="Google Play has playlist descriptions, but Spotify might not. TODO.", #TODO
+            description="", # doesn't seem to be vended from the Spotify API
             platform="Spotify",
             id=response['id'],
             owner_name=response['owner']['display_name'],
