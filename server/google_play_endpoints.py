@@ -13,11 +13,24 @@ import model
 #    - `google-play-username` and `google-play-password`
 
 @app.route('/google-play/playlists', methods=['GET'])
+@app.route('/google-play/playlists/', methods=['GET'])
 def google_play_playlists():
     client = gmusicapi_client()
     playlists_response = client.get_all_playlists()
     playlists = list(map(model.Playlist.from_google_play_response, playlists_response))
     return model.to_json(playlists)
+
+@app.route('/google-play/playlists/<path:playlist_id>', methods=['GET'])
+def google_play_playlist(playlist_id):
+    client = gmusicapi_client()
+    playlists_response = client.get_all_user_playlist_contents()
+    
+    for playlist in playlists_response:
+        if playlist['id'] == playlist_id:
+            songs = list(map(model.Song.from_google_play_response, playlist['tracks']))
+            return model.to_json(songs)
+    
+    return model.to_json({"error": "Could not find playlist with id '" + str(playlist_id) + "'"})
 
 ##########################
 # gmusicapi Client Setup #
