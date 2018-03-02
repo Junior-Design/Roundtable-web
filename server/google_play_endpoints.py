@@ -13,7 +13,6 @@ import model
 #    - `google-play-username` and `google-play-password`
 
 @app.route('/google-play/playlists', methods=['GET'])
-@app.route('/google-play/playlists/', methods=['GET'])
 def google_play_playlists():
     client = gmusicapi_client()
     playlists_response = client.get_all_playlists()

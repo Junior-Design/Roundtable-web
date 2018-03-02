@@ -8,12 +8,31 @@ import spotify
 # `spotify` API Reference:
 # https://github.com/steinitzu/spotify-api
 
+#################
+# API Endpoints #
+#################
+# Spotify Auth Token must be included in the http header of any requests to these endpoints.
+#    - `spotify-token`
+
+@app.route('/spotify/user-id', methods=['GET'])
+def spotify_user_id():
+    client = spotify_client()
+    me_response = client.me()
+    return me_response['id']
+
 @app.route('/spotify/playlists', methods=['GET'])
 def spotify_playlists():
     client = spotify_client()
     playlists_response = client.me_playlists()
-    playlists = list(map(model.Playlist.from_spotify_response, playlists_response["items"]))
-    return model.to_json(playlists)
+    playlists = list(map(model.Playlist.from_spotify_response, playlists_response["items"])) # only returns the first 100 tracks
+    return model.to_json(playlists) # still needs to be parsed into the Song model
+
+@app.route('/spotify/playlists/<path:playlist_id>', methods=['GET'])
+def spotify_playlist(playlist_id):
+    client = spotify_client()
+    user_id = spotify_user_id()
+    playlist_response = client.user_playlist_tracks(user_id, playlist_id) #throws a
+    return model.to_json(playlist_response)
 
 #####################
 # Spotify auth flow #
