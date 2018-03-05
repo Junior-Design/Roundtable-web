@@ -11,17 +11,6 @@ const imageStyle = {
   verticalAlign: 'middle'
 }
 
-const TableRow = styled.tr`
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-`;
-
-const TableCell = styled.td`
-  padding-right: 10px;
-  padding-bottom: 10px;
-`;
-
 export class PlaylistItem extends React.Component {
   
   componentWillMount() {
@@ -36,16 +25,12 @@ export class PlaylistItem extends React.Component {
   
   render() {
     return (
-  		<div className="playlistItem">
-        <div>
-          <div className="icon"><img src={this.state.image} style={imageStyle} /></div>
-        </div>
-        <div>
-          <p name="playlisttitle" style={{"fontSize": "25px"}}>{this.props.playlist.name}</p>
-        </div>
-        <div>
-          <p name="description">{this.props.playlist.description}</p>
-        </div>
+  		<div className="playlistItem" style={{"marginBottom":"12px"}}>
+        <span>
+          <img src={this.state.image} style={imageStyle} />
+        </span>
+        <span style={{"fontSize": "25px"}}>{this.props.playlist.name}</span>
+        <span>{this.props.playlist.description}</span>
       </div>
     );
   }
