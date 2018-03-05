@@ -47,18 +47,20 @@ class Song:
         if response['source'] == '1': #  `1` means "uploaded by user", so there is no metadata
             return Song(name="Unknown Song", artist="Unknown Artist")
         else:
+            track = response['track']
             return Song(
-                name=response['track']['title'],
-                artist=response['track']['artist'],
-                album=response['track']['album'],
+                name=track['title'],
+                artist=track['artist'],
+                album=track['album'],
                 id=response['id'],
-                album_art_url=response['track']['albumArtRef'][0]['url'])
+                album_art_url=track['albumArtRef'][0]['url'])
 
     def from_spotify_response(response):
+        track = response['track']
         return Song(
-            name="",
-            artist="",
-            album="",
-            id="",
-            album_art_url="")
+            name=track['name'],
+            artist=track['artists'][0]['name'],
+            album=track['album']['name'],
+            id=track['id'],
+            album_art_url=track['album']['images'][0]['url'])
 
