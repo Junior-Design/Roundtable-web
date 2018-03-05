@@ -12,7 +12,7 @@ const comms = {
     }
     document.cookie = name + "=" + (value || "")  + expires_t + "; path=/";
   },
-  
+
   getCookie : function(name) {
     var nameEQ = name + "=";
     var ca = document.cookie.split(';');
@@ -23,11 +23,11 @@ const comms = {
     }
     return null;
   },
-  
+
   eraseCookie : function(name) {
     document.cookie = name+'=; Max-Age=-99999999;';
   },
-  
+
   post : function(route, data, callback) {
     let c = request.post(route)
       .type('json')
@@ -41,7 +41,7 @@ const comms = {
     if (callback)
       c.then(callback)
   },
-  
+
   get : function(route, headers, data, callback) {
     let c = request.get(route)
       .type('json')
@@ -57,17 +57,30 @@ const comms = {
         callback(JSON.parse(response.text))
       })
   },
-  
+
   getPlaylists(callback) {
     let service = comms.getCookie('music-service')
     let route = '/' + service + '/playlists'
-    
+
     if (service == 'spotify') {
       let headers = [["spotify-token", comms.getCookie('spotify-token')]]
       comms.get(route, headers, {}, callback)
-    } 
-    
-    else { // google-play
+    } else { // google-play
+      let headers = [
+        ["google-play-username", comms.getCookie('google-play-username')],
+        ["google-play-password", comms.getCookie('google-play-password')]]
+      comms.get(route, headers, {}, callback)
+    }
+  },
+
+  getPlaylistSong(playlistID, callback) {
+    let service = comms.getCookie('music-service')
+    let route = '/' + service + '/playlists/' + playlistID
+
+    if (service == 'spotify') {
+      let headers = [["spotify-token", comms.getCookie('spotify-token')]]
+      comms.get(route, headers, {}, callback)
+    } else { // google-play
       let headers = [
         ["google-play-username", comms.getCookie('google-play-username')],
         ["google-play-password", comms.getCookie('google-play-password')]]
