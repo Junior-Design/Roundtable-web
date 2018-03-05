@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { Button1 } from '../components/buttons';
-import { PlaylistTable } from '../components/PlaylistTable';
+import { PlaylistList } from '../components/PlaylistList';
 
 import comms from '../comms';
 
@@ -25,7 +25,7 @@ export default class BrowsePage extends React.Component {
     return (
       <div className="browse">
         <h1>Your playlists</h1>
-        <PlaylistTable />
+        <PlaylistList />
 				<br/>
 				<br/>
       </div>

@@ -22,7 +22,7 @@ const TableCell = styled.td`
   padding-bottom: 10px;
 `;
 
-export class PlaylistTableRow extends React.Component {
+export class PlaylistItem extends React.Component {
   
   componentWillMount() {
     if (this.props.playlist.image_url != undefined 
@@ -36,17 +36,17 @@ export class PlaylistTableRow extends React.Component {
   
   render() {
     return (
-  		<TableRow>
-        <TableCell>
+  		<div className="playlistItem">
+        <div>
           <div className="icon"><img src={this.state.image} style={imageStyle} /></div>
-        </TableCell>
-        <TableCell>
+        </div>
+        <div>
           <p name="playlisttitle" style={{"fontSize": "25px"}}>{this.props.playlist.name}</p>
-        </TableCell>
-        <TableCell>
+        </div>
+        <div>
           <p name="description">{this.props.playlist.description}</p>
-        </TableCell>
-      </TableRow>
+        </div>
+      </div>
     );
   }
 }
