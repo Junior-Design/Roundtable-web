@@ -31,8 +31,10 @@ def spotify_playlists():
 def spotify_playlist(playlist_id):
     client = spotify_client()
     user_id = spotify_user_id()
-    playlist_response = client.user_playlist_tracks(user_id, playlist_id) #throws a
-    return model.to_json(playlist_response)
+    # max `limit` is 100 songs -- we would have to handle paging to get ~all~ of the songs.
+    songs_response = client.user_playlist_tracks(user_id, playlist_id, limit=100)
+    songs = list(map(model.Song.from_spotify_response, songs_response["items"]))
+    return model.to_json(songs)
 
 #####################
 # Spotify auth flow #
