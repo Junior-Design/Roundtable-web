@@ -25,7 +25,6 @@ class Playlist:
             owner_name=response['ownerName'])
 
     def from_spotify_response(response):
-        print(response)
         return Playlist(
             name=response['name'],
             description="", # doesn't seem to be vended from the Spotify API

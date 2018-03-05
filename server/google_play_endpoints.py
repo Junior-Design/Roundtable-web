@@ -17,6 +17,14 @@ def google_play_playlists():
     client = gmusicapi_client()
     playlists_response = client.get_all_playlists()
     playlists = list(map(model.Playlist.from_google_play_response, playlists_response))
+    
+    # also attach images to the playlists
+    for playlist in playlists:
+        if playlist.image_url == None:
+            songs = model.from_json(google_play_playlist(playlist.id))
+            if len(songs) > 0:
+                playlist.image_url = songs[0]['album_art_url']
+    
     return model.to_json(playlists)
 
 @app.route('/google-play/playlists/<path:playlist_id>', methods=['GET'])
