@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { PlaylistTableRow } from '../components/PlaylistTableRow';
+import { PlaylistItem } from '../components/PlaylistItem';
 
 import comms from '../comms';
 
@@ -12,7 +12,7 @@ const imageStyle = {
   verticalAlign: 'middle'
 }
 
-export class PlaylistTable extends React.Component {
+export class PlaylistList extends React.Component {
 
 	componentWillMount() {
 		this.state = {"playlists": []}
@@ -25,13 +25,13 @@ export class PlaylistTable extends React.Component {
 
   render() {
   	let playlistitems = this.state.playlists.map(function(playlist) {
-  		return (<PlaylistTableRow playlist={playlist}/>)
+  		return (<PlaylistItem playlist={playlist} key={playlist.name}/>)
   	})
 
     return (
-    	<table cellSpacing="0">
+    	<div className="playlistList">
     		{ playlistitems }
-    	</table>
+    	</div>
     );
   }
 }
