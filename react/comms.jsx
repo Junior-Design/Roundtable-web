@@ -42,7 +42,19 @@ const comms = {
       c.then(callback)
   },
 
-  get : function(route, headers, data, callback) {
+  get : function(route, data, callback) {
+    let service = comms.getCookie('music-service')
+    route = route.replace('{service}', service)
+    
+    let headers = []
+    if (service == 'spotify') {
+      headers = [["spotify-token", comms.getCookie('spotify-token')]]
+    } else { // google-play
+      headers = [
+        ["google-play-username", comms.getCookie('google-play-username')],
+        ["google-play-password", comms.getCookie('google-play-password')]]
+    }
+    
     let c = request.get(route)
       .type('json')
 
@@ -59,34 +71,14 @@ const comms = {
   },
 
   getPlaylists(callback) {
-    let service = comms.getCookie('music-service')
-    let route = '/' + service + '/playlists'
-
-    if (service == 'spotify') {
-      let headers = [["spotify-token", comms.getCookie('spotify-token')]]
-      comms.get(route, headers, {}, callback)
-    } else { // google-play
-      let headers = [
-        ["google-play-username", comms.getCookie('google-play-username')],
-        ["google-play-password", comms.getCookie('google-play-password')]]
-      comms.get(route, headers, {}, callback)
-    }
+    comms.get('/{service}/playlists', {}, callback)
   },
 
-  getPlaylistSong(playlistID, callback) {
-    let service = comms.getCookie('music-service')
-    let route = '/' + service + '/playlists/' + playlistID
-
-    if (service == 'spotify') {
-      let headers = [["spotify-token", comms.getCookie('spotify-token')]]
-      comms.get(route, headers, {}, callback)
-    } else { // google-play
-      let headers = [
-        ["google-play-username", comms.getCookie('google-play-username')],
-        ["google-play-password", comms.getCookie('google-play-password')]]
-      comms.get(route, headers, {}, callback)
-    }
+  getPlaylistSongs(playlistId, callback) {
+    let route = '/{service}/playlists/' + playlistId
+    comms.get(route, {}, callback)
   }
+  
 }
 
 export default comms
