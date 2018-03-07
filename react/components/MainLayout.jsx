@@ -6,7 +6,7 @@ import MainLayoutHeader from './MainLayoutHeader';
 const containerStyle = {
   display: 'block',
   margin: '0 auto',
-  src: 'url("assets/fonts/Rodina-Regular.otf")',
+  src: 'url("assets/fonts/.26963.otf")',
   backgroundImage: 'url("images/blur.jpg")',
   color: 'black',
   width: '100%',

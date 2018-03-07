@@ -35,7 +35,7 @@ const buttonStyle = {
   backgroundColor: '#031738',
   border: 'none',
   color: 'white',
-  fontFamily: 'Rodina',
+  fontFamily: 'Objektiv',
   width: "100%",
   border: "0",
   padding: "15px",
