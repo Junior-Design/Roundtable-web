@@ -11,8 +11,13 @@ const imageStyle = {
   verticalAlign: 'middle'
 }
 
+class SongButton extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+}
+
 function navigateToPlaylistSong() {
-  //print()
   window.location = '/login'
 }
 
@@ -36,8 +41,8 @@ export class PlaylistItem extends React.Component {
         </span>
         <span style={{"fontSize": "25px"}}>{this.props.playlist.name}</span>
         <span>{this.props.playlist.description}</span>
-      </div>
-      <handler={navigateToPlaylistSong} />
+      </div>,
+      <ServiceLoginButton handler={navigateToPlaylistSong} />
     );
   }
 }
