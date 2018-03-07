@@ -4,10 +4,9 @@
     src: url("/assets/fonts/Objektiv-Mk1-Regular.otf");
 }
 
-/*
-// add a more bold version of text for logo (in index page)
+
+/* add a more bold version of text for logo (in index page) */
 @font-face {
 	font-family: ObjectivBold;
-	src: url("/assets/fonts/Objectiv-Mk1-Bold");
+	src: url("/assets/fonts/Objectiv-Mk1-Bold.otf");
 }
-*/
