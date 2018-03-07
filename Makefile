@@ -14,10 +14,10 @@ bundle :
 	@echo Done.
 
 runserver run :
-	@python3 server/server.py
+	@python3 -B server/server.py
 
 runhttps :
-	@python3 server/server.py --https
+	@python3 -B server/server.py --https
 
 genssl :
 	openssl ecparam -genkey -name secp384r1 -out server.key
