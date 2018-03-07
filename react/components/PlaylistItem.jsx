@@ -11,6 +11,11 @@ const imageStyle = {
   verticalAlign: 'middle'
 }
 
+function navigateToPlaylistSong() {
+  //print()
+  window.location = '/login'
+}
+
 export class PlaylistItem extends React.Component {
   
   componentWillMount() {
@@ -25,13 +30,14 @@ export class PlaylistItem extends React.Component {
   
   render() {
     return (
-  		<div className="playlistItem" style={{"marginBottom":"12px"}}>
+  		<div className="playlistItem" style={{"marginBottom":"12px"}} onClick={this.props.handler}>
         <span>
           <img src={this.state.image} style={imageStyle} />
         </span>
         <span style={{"fontSize": "25px"}}>{this.props.playlist.name}</span>
         <span>{this.props.playlist.description}</span>
       </div>
+      <handler={navigateToPlaylistSong} />
     );
   }
 }
