@@ -5,8 +5,9 @@
 }
 
 /*
+// add a more bold version of text for logo (in index page)
 @font-face {
-    font-family: Rodina;
-    src: url("/assets/fonts/Rodina-Regular.otf");
+	font-family: ObjectivBold;
+	src: url("/assets/fonts/Objectiv-Mk1-Bold");
 }
 */
