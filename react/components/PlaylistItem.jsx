@@ -41,8 +41,7 @@ export class PlaylistItem extends React.Component {
         </span>
         <span style={{"fontSize": "25px"}}>{this.props.playlist.name}</span>
         <span>{this.props.playlist.description}</span>
-      </div>,
-      <SongButton handler={navigateToPlaylistSong} />
+      </div>
     );
   }
 }
