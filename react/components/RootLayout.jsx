@@ -6,7 +6,6 @@ import { Link } from 'react-router';
 const containerStyle = {
   display: 'block',
   margin: '0 auto',
-  src: 'url("assets/fonts/Objektiv-Mk1-Regular.otf")',
   backgroundImage: 'url("/assets/images/blur.jpg")',
   backgroundSize: "100% 100%",
   fontFamily: 'Objektiv',
