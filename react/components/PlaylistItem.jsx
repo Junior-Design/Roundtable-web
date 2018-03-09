@@ -13,9 +13,11 @@ const imageStyle = {
 
 export class PlaylistItem extends React.Component {
   
-  componentWillMount() {
-    if (this.props.playlist.image_url != undefined 
-      && this.props.playlist.image_url != "") 
+  constructor(props) {
+    super(props)
+
+    if (props.playlist.image_url != undefined 
+      && props.playlist.image_url != "") 
     {
       this.state = {"image": this.props.playlist.image_url}
     } else {
@@ -25,13 +27,13 @@ export class PlaylistItem extends React.Component {
   
   render() {
     return (
-  		<div className="playlistItem" style={{"marginBottom":"12px"}}>
+  		<li className="playlistItem" onClick={this.props.onClick} style={{"margin":"9px 0", "width":"100%", "height":"75px"}}>
         <span>
           <img src={this.state.image} style={imageStyle} />
         </span>
         <span style={{"fontSize": "25px"}}>{this.props.playlist.name}</span>
         <span>{this.props.playlist.description}</span>
-      </div>
+      </li>
     );
   }
 }
