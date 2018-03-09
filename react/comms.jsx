@@ -42,7 +42,7 @@ const comms = {
       c.then(callback)
   },
 
-  get : function(route, headers, data, callback) {
+  get : function(route, headers, data, callback) {    
     let c = request.get(route)
       .type('json')
 
@@ -57,36 +57,32 @@ const comms = {
         callback(JSON.parse(response.text))
       })
   },
-
-  getPlaylists(callback) {
+  
+  get_roundtable : function(route, data, callback) {
     let service = comms.getCookie('music-service')
-    let route = '/' + service + '/playlists'
-
+    route = route.replace('{service}', service)
+    
+    let headers = []
     if (service == 'spotify') {
-      let headers = [["spotify-token", comms.getCookie('spotify-token')]]
-      comms.get(route, headers, {}, callback)
+      headers = [["spotify-token", comms.getCookie('spotify-token')]]
     } else { // google-play
-      let headers = [
+      headers = [
         ["google-play-username", comms.getCookie('google-play-username')],
         ["google-play-password", comms.getCookie('google-play-password')]]
-      comms.get(route, headers, {}, callback)
     }
+    
+    comms.get(route, headers, data, callback)
   },
 
-  getPlaylistSong(playlistID, callback) {
-    let service = comms.getCookie('music-service')
-    let route = '/' + service + '/playlists/' + playlistID
+  getPlaylists(callback) {
+    comms.get_roundtable('/{service}/playlists', {}, callback)
+  },
 
-    if (service == 'spotify') {
-      let headers = [["spotify-token", comms.getCookie('spotify-token')]]
-      comms.get(route, headers, {}, callback)
-    } else { // google-play
-      let headers = [
-        ["google-play-username", comms.getCookie('google-play-username')],
-        ["google-play-password", comms.getCookie('google-play-password')]]
-      comms.get(route, headers, {}, callback)
-    }
+  getPlaylistSongs(playlistId, callback) {
+    let route = '/{service}/playlists/' + playlistId
+    comms.get_roundtable(route, {}, callback)
   }
+  
 }
 
 export default comms

@@ -18,14 +18,13 @@ function connectToGooglePlay() {
 
 
 const serviceLoginButtonStyle = {
-  //backgroundColor: '#4CAF50', // Green
   backgroundColor: '#031738',
   border: 'none',
   color: 'white',
   margin: '10px auto',
   textAlign: 'center',
   fontSize: '20px',
-  fontFamily: 'Rodina',
+  fontFamily: 'Objektiv',
   width: '300px',
   height: '60px',
   borderRadius: '5px',
@@ -63,7 +62,7 @@ const logoHeaderStyle = {
 const logoStyle = {
   lineHeight: '400px',
   fontSize: '50px',
-  fontFamily: 'Rodina'
+  fontFamily: 'Objektiv'
 }
 
 const serviceLoginGroupStyle = {

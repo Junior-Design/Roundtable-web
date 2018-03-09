@@ -8,7 +8,7 @@ const button1Style = {
   display:"inline-block",
   cursor:"pointer",
   color:"#ffffff",
-  fontFamily:"Arial",
+  fontFamily:"Objektiv",
   fontSize:"17px",
   padding:"14px 18px",
   textDecoration:"none",
