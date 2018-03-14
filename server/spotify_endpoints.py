@@ -58,7 +58,7 @@ def spotify_auth_callback():
     oauth = spotify_oauth()
     oauth.request_token(request.url)
     token = oauth.token
-    return redirect("/confirm/spotify/?token=" + token['access_token'] + "&expires_in=" + str(token['expires_in']))
+    return redirect("/login?token=" + token['access_token'] + "&expires_in=" + str(token['expires_in']))
 
 def spotify_oauth():
     return spotify.OAuth(

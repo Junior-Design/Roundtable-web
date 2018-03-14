@@ -23,7 +23,7 @@ export default class BrowsePage extends React.Component {
 
     if (this.props.location.query.playlist) {
       console.log(this.props.location.query.playlist)
-      comms.getPlaylistSong(this.props.location.query.playlist, function(songs) {
+      comms.getPlaylistSongs(this.props.location.query.playlist, function(songs) {
         comp.setState({"items": songs, "playlist": false})
       })
     } else {

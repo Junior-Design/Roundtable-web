@@ -8,12 +8,23 @@ import comms from '../comms'
 export default class LoginPage extends React.Component {
   constructor(props) {
     super(props)
+
+    // spotify redirect
+    let query = props.location.query
+    if (query.token && query.expires_in) {
+      this.state = {'service': 'Spotify'}
+      comms.setCookie('music-service', 'spotify', query.expires_in)
+      comms.setCookie('spotify-token', query.token, query.expires_in)
+      window.location = "/browse"
+    } else {
+      this.state = {'service': 'Google Play'}
+    }
   }
 
   render() {
     return (
       <div className="login-content">
-        <LoginForm service="Google Play" handler={this.handleLogin}/>
+        <LoginForm service={this.state.service} handler={this.handleLogin}/>
       </div>
     );
   }
