@@ -1,4 +1,7 @@
 
+# firebase private key
+serviceAccountKey.json
+
 # Bundled ReactJS static file
 bundle.js
 
