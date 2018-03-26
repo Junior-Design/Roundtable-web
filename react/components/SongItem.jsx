@@ -29,8 +29,8 @@ export class SongItem extends React.Component {
         <span>
           <img src={this.state.image} style={imageStyle} />
         </span>
-        <span style={{"fontSize": "1em"}}>{this.props.song.name}</span>
-        <span>{this.props.song.artist} - {this.props.song.album}</span>
+        <span style={{"fontSize": "1.25em", "marginRight":"15px"}}>{this.props.song.name}</span>
+        <span style={{"fontSize": "0.75em"}}>{this.props.song.artist} - {this.props.song.album}</span>
       </div>
     );
   }
