@@ -46,7 +46,10 @@ export default class MainLayout extends React.Component {
       <div>
         <Sidebar content={items} onItemSelected={this.onNavButton}>
         <MainLayoutHeader/>
-        <div className="main-content" style={{paddingLeft: '30px'}}>{this.props.children}</div>
+        <div className="main-content" 
+          style={{paddingLeft: '30px'}}>{this.props.children}
+          //background=
+          </div>
         </Sidebar>
       </div>
     );
