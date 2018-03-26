@@ -48,7 +48,6 @@ export default class MainLayout extends React.Component {
         <MainLayoutHeader/>
         <div className="main-content" 
           style={{paddingLeft: '30px'}}>{this.props.children}
-          //background=
           </div>
         </Sidebar>
       </div>
