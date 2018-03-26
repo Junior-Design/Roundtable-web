@@ -6,7 +6,6 @@ import RootLayout from './components/RootLayout';
 import IndexPage from './pages/IndexPage';
 import LoginPage from './pages/LoginPage';
 import BrowsePage from './pages/BrowsePage';
-import SpotifyConfirmationPage from './pages/SpotifyConfirmationPage';
 import PlaylistsPage from './pages/PlaylistsPage';
 import TestAPIPage from './pages/TestAPIPage';
 import NotFoundPage from './pages/NotFoundPage';
@@ -18,7 +17,6 @@ const routes = (
     <IndexRoute                     component={IndexPage} />
     <Route path="login"           component={LoginPage} />
     <Route component={MainLayout}>
-      <Route path="confirm/spotify"	component={SpotifyConfirmationPage} />
       <Route path="browse"          component={BrowsePage} />
       <Route path="playlists"       component={PlaylistsPage} />
       {/* <Route path="/testapi"        component={TestAPIPage} /> */}
