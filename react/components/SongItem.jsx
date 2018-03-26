@@ -14,10 +14,10 @@ const imageStyle = {
 export class SongItem extends React.Component {
   
   componentWillMount() {
-    if (this.props.song.image_url != undefined 
-      && this.props.song.image_url != "") 
+    if (this.props.song.album_art_url != undefined 
+      && this.props.song.album_art_url != "") 
     {
-      this.state = {"image": this.props.song.image_url}
+      this.state = {"image": this.props.song.album_art_url}
     } else {
       this.state = {"image": '/assets/images/music-placeholder.png'}
     }
@@ -30,7 +30,7 @@ export class SongItem extends React.Component {
           <img src={this.state.image} style={imageStyle} />
         </span>
         <span style={{"fontSize": "25px"}}>{this.props.song.name}</span>
-        <span>{this.props.song.description}</span>
+        <span>{this.props.song.artist} - {this.props.song.album}</span>
       </div>
     );
   }
