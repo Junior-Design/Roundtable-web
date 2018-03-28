@@ -6,6 +6,20 @@ def from_json(response):
 def to_json(model_object):
     return json.dumps(model_object, indent=4, default=lambda x: x.__dict__)
 
+class User:
+    def __init__(self, id=None, name=None, platform=None):
+        self.id = id
+        self.name = name
+        self.platform = platform
+
+    def from_google_play_response(response):
+        return User()
+
+    def from_spotify_response(response):
+        return User(
+            id=response['id'],
+            name=response['display_name'],
+            platform="Spotify")
 
 class Playlist:
     def __init__(self, name=None, description=None, platform=None, id=None, owner_name=None, image_url=None):
@@ -52,7 +66,7 @@ class Song:
                 artist=track['artist'],
                 album=track['album'],
                 id=response['id'],
-                album_art_url=track['albumArtRef'][0]['url'])
+                album_art_url=track['albumArtRef'][len(track['albumArtRef']) - 1]['url'])
 
     def from_spotify_response(response):
         track = response['track']

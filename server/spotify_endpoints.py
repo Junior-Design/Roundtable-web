@@ -4,6 +4,7 @@ from flask_app import app
 import global_vars
 import model
 import spotify
+import firebase
 
 # `spotify` API Reference:
 # https://github.com/steinitzu/spotify-api
@@ -14,11 +15,12 @@ import spotify
 # Spotify Auth Token must be included in the http header of any requests to these endpoints.
 #    - `spotify-token`
 
-@app.route('/spotify/user-id', methods=['GET'])
-def spotify_user_id():
-    client = spotify_client()
+@app.route('/spotify/user', methods=['GET'])
+def spotify_user(custom_token=None):
+    client = spotify_client(custom_token)
     me_response = client.me()
-    return me_response['id']
+    user = model.User.from_spotify_response(me_response)
+    return model.to_json(user)
 
 @app.route('/spotify/playlists', methods=['GET'])
 def spotify_playlists():
@@ -30,9 +32,9 @@ def spotify_playlists():
 @app.route('/spotify/playlists/<path:playlist_id>', methods=['GET'])
 def spotify_playlist(playlist_id):
     client = spotify_client()
-    user_id = spotify_user_id()
+    user = spotify_user()
     # max `limit` is 100 songs -- we would have to handle paging to get ~all~ of the songs.
-    songs_response = client.user_playlist_tracks(user_id, playlist_id, limit=100)
+    songs_response = client.user_playlist_tracks(user.id, playlist_id, limit=100)
     songs = list(map(model.Song.from_spotify_response, songs_response["items"]))
     return model.to_json(songs)
 
@@ -58,6 +60,11 @@ def spotify_auth_callback():
     oauth = spotify_oauth()
     oauth.request_token(request.url)
     token = oauth.token
+    
+    # save the user to our users database
+    user = model.from_json(spotify_user(custom_token=token['access_token']))
+    firebase.set_data("users/" + user['id'], user)
+    
     return redirect("/login?token=" + token['access_token'] + "&expires_in=" + str(token['expires_in']))
 
 def spotify_oauth():
@@ -67,13 +74,16 @@ def spotify_oauth():
         redirect_uri=(global_vars.protocol + '://localhost:3000/spotify/auth/callback'),
         scopes=['user-read-private', 'user-top-read'])
 
-def spotify_client():
-    user_provided_token = request.headers.get("spotify-token")
+def spotify_client(custom_token=None):
     oauth = spotify_oauth()
 
     # this is a hack but it works
     # (supposed to be the same token object returned by `oauth.request_token` but python can't tell the difference)
-    oauth.token = {'access_token': user_provided_token}
+    if custom_token == None:
+        user_provided_token = request.headers.get("spotify-token")
+        oauth.token = {'access_token': user_provided_token}
+    else:
+        oauth.token = {'access_token': custom_token}
 
     return spotify.Client(oauth).api
 
