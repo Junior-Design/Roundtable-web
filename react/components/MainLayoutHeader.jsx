@@ -15,6 +15,14 @@ const titleStyle = {
   marginLeft: '58px',
 }
 
+/*const searchbarStyle = {
+  paddingTop: 20,
+    backgroundColor: 'white',
+    borderBottomColor: 'gainsboro',
+    paddingBottom: 5,
+    paddingHorizontal: 4
+}*/
+
 
 //logout link is shown in main header depending on wheather a currentUser is logged in
 export default class MainLayoutHeader extends React.Component {
