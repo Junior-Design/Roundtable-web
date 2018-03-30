@@ -7,6 +7,7 @@ import IndexPage from './pages/IndexPage';
 import LoginPage from './pages/LoginPage';
 import BrowsePage from './pages/BrowsePage';
 import PlaylistPage from './pages/PlaylistPage';
+import FriendsPage from './pages/FriendsPage';
 import TestAPIPage from './pages/TestAPIPage';
 import NotFoundPage from './pages/NotFoundPage';
 
@@ -19,6 +20,7 @@ const routes = (
     <Route component={MainLayout}>
       <Route path="browse"          component={BrowsePage} />
       <Route path="playlist"       component={PlaylistPage} />
+      <Route path="friends"         component={FriendsPage} />
       {/* <Route path="/testapi"        component={TestAPIPage} /> */}
       <Route path="*"               component={NotFoundPage} />
     </Route>
