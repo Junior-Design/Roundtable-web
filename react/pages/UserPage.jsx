@@ -12,7 +12,7 @@ export default class UserPage extends React.Component {
   }
 
   loadUserPlaylists(id) {
-    comms.getPlaylists((playlists) => {
+    comms.getUserPlaylists(id, (playlists) => {
       this.setState({"items": playlists, "playlist": 0})
     })
   }
