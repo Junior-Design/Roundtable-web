@@ -83,6 +83,11 @@ const comms = {
     comms.get_roundtable(route, {}, callback)
   },
 
+  getUserPlaylistSongs(userId, playlistId, callback) {
+    let route = '/user/' + userId + '/playlists/' + playlistId
+    comms.get_roundtable(route, {}, callback)
+  },
+
   getPlaylistSongs(playlistId, callback) {
     let route = '/{service}/playlists/' + playlistId
     comms.get_roundtable(route, {}, callback)

@@ -6,7 +6,8 @@ export default class PlaylistPage extends React.Component {
   constructor(props) {
     super(props);
     let id = this.props.location.query.id
-    this.state = {"id":id}
+    let userId = this.props.location.query.userId
+    this.state = {"id":id, "userId":userId}
     
   }
 
@@ -17,7 +18,7 @@ export default class PlaylistPage extends React.Component {
   render() {
     return (
       <div>
-        <SongsList playlistId={this.state.id} songClicked={(id) => console.log(id)} />
+        <SongsList playlistId={this.state.id} userId={this.state.userId} songClicked={(id) => console.log(id)} />
       </div>
     );
   }

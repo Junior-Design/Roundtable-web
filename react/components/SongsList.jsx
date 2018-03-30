@@ -9,13 +9,19 @@ export default class SongsList extends React.Component {
   constructor(props) {
     super(props)
     this.state = {"items" : []}
-    this.loadSongsInPlaylist(props.playlistId);
+    this.loadSongsInPlaylist(props.playlistId, props.userId);
   }
 
-  loadSongsInPlaylist(id) {
-    comms.getPlaylistSongs(id, (songs) => {
-      this.setState({"items": songs})
-    })
+  loadSongsInPlaylist(id, userId) {
+    if (userId) {
+      comms.getUserPlaylistSongs(id, userId, (songs) => {
+        this.setState({"items": songs})
+      })
+    } else {
+      comms.getPlaylistSongs(id, (songs) => {
+        this.setState({"items": songs})
+      })
+    }
   }
 
   render() {
