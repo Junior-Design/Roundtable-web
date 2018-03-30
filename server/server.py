@@ -8,6 +8,7 @@ from flask import send_from_directory
 import global_vars
 import google_play_endpoints
 import spotify_endpoints
+import database_endpoints
 
 # Flask `app` defined in /server/flask_app.py so it can be
 # imported in other files without making circular dependencies
