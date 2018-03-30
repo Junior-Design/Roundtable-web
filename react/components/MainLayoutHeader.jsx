@@ -21,6 +21,7 @@ export default class MainLayoutHeader extends React.Component {
   constructor(props) {
     super(props)
 
+    this.state = {'title' : props.title}
     this.onOpenSidebar = this.onOpenSidebar.bind(this);
   }
 
@@ -31,7 +32,7 @@ export default class MainLayoutHeader extends React.Component {
   render() {
     return (
       <div className="mainLayoutHeader" style={headerStyle}>
-        <h1 style={titleStyle}>roundtable</h1>
+        <h1 style={titleStyle}>{this.state.title}</h1>
       </div>
     );
   }
