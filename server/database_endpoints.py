@@ -11,4 +11,8 @@ import firebase
 
 @app.route('/users', methods=['GET'])
 def database_users():
-    return "hello"
+    users_dict = firebase.get_data("users")
+    users = list(map(lambda item: item[1], users_dict.items()))
+    
+    print(users)
+    return model.to_json(users)
