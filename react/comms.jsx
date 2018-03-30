@@ -89,7 +89,7 @@ const comms = {
   },
 
   getFriends(callback) {
-    comms.get_roundtable('/users/friends', {}, callback)
+    comms.get_roundtable('/users', {}, callback)
   }
   
 }
