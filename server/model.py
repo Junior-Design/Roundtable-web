@@ -1,10 +1,16 @@
 import json
 
 def from_json(response):
-    return json.loads(response)
+    try:
+        return json.loads(response)
+    except:
+        return {}
 
 def to_json(model_object):
-    return json.dumps(model_object, indent=4, default=lambda x: x.__dict__)
+    try:
+        return json.dumps(model_object, indent=4, default=lambda x: x.__dict__)
+    except:
+        return ""
 
 class User:
     def __init__(self, id=None, name=None, platform=None):

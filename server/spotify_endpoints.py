@@ -33,10 +33,14 @@ def spotify_playlists():
 def spotify_playlist(playlist_id):
     client = spotify_client()
     user = model.from_json(spotify_user())
-    # max `limit` is 100 songs -- we would have to handle paging to get ~all~ of the songs.
-    songs_response = client.user_playlist_tracks(user['id'], playlist_id, limit=100)
-    songs = list(map(model.Song.from_spotify_response, songs_response["items"]))
-    return model.to_json(songs)
+    
+    try:
+        # max `limit` is 100 songs -- we would have to handle paging to get ~all~ of the songs.
+        songs_response = client.user_playlist_tracks(user['id'], playlist_id, limit=100)
+        songs = list(map(model.Song.from_spotify_response, songs_response["items"]))
+        return model.to_json(songs)
+    except:
+        return "{'error': 'Could not fetch playlist. It may not be owned by the user (e.g. subscribed playlist)'}"
 
 @app.route('/spotify/save-to-firebase')
 def save_spotify_data_to_firebase():
@@ -47,6 +51,8 @@ def save_spotify_data_to_firebase():
     playlists = model.from_json(spotify_playlists())
     
     for playlist in playlists:
+        if 'error' in playlist:
+            continue
         songs = model.from_json(spotify_playlist(playlist['id']))
         playlist['songs'] = songs
     
