@@ -11,7 +11,7 @@ const imageStyle = {
   verticalAlign: 'middle'
 }
 
-export class SongItem extends React.Component {
+export default class SongItem extends React.Component {
   
   componentWillMount() {
     if (this.props.song.album_art_url != undefined 

@@ -17,21 +17,31 @@ export default class FriendsPage extends React.Component {
 
     constructor(props) {
         super(props)
+        this.state = {"friends" : []}
+        let comp = this
 
-        /*comms.getSongs(props.playlistId, function(songs) {
-            console.log(songs)
-            comp.setState({"songs": songs})
-        })*/
+        if (this.props.location.query.friend) {
+            //what happens when a friend is clicked in the list
+        } else {
+          comms.getFriends(function(friends) {
+            comp.setState({"friends": friends})
+          })
+        }
+    }
+
+    //not being used right now
+    friendClicked(id) {
+        window.location = '/friends=' + id
     }
     
     render() {
-        /*let songs = this.state.songs.map(function(song) {
-            return (<SongItem song={song} key={song.name}/>)
-        })*/
+        let friends =this.state.friends.map(function(friend) {
+            return (<Friend friend={friend}/>)
+        })
 
     return (
-        <div className="songItem">
-             FriendsPage
+        <div className="Friend">
+             { friends }
         </div>);
     }
 }

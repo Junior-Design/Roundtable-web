@@ -45,10 +45,8 @@ export default class MainLayout extends React.Component {
     return (
       <div>
         <Sidebar content={items} onItemSelected={this.onNavButton}>
-        <MainLayoutHeader/>
-        <div className="main-content" 
-          style={{paddingLeft: '30px'}}>{this.props.children}
-          </div>
+        <MainLayoutHeader title="roundtable"/>
+        <div className="main-content" style={{paddingLeft: '30px'}}>{this.props.children}</div>
         </Sidebar>
       </div>
     );

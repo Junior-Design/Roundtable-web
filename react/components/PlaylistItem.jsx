@@ -21,7 +21,7 @@ function navigateToPlaylistSong() {
   window.location = '/login'
 }
 
-export class PlaylistItem extends React.Component {
+export default class PlaylistItem extends React.Component {
   
   constructor(props) {
     super(props)
