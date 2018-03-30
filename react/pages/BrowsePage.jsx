@@ -18,9 +18,9 @@ export default class BrowsePage extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = {"items" : []}
-    let comp = this
-
+    this.state = {"items" : [], "playlistId" : 0}
+    this.loadUserPlaylists();
+/*
     if (this.props.location.query.playlist) {
       console.log(this.props.location.query.playlist)
       comms.getPlaylistSongs(this.props.location.query.playlist, function(songs) {
@@ -30,31 +30,22 @@ export default class BrowsePage extends React.Component {
       comms.getPlaylists(function(playlists) {
         comp.setState({"items": playlists, "playlist": true})
       })
-    }
+    }*/
+    this.playlistClicked = this.playlistClicked.bind(this);
+  }
+
+  loadUserPlaylists() {
+    comms.getPlaylists((playlists) => {
+      this.setState({"items": playlists, "playlist": 0})
+    })
   }
 
   playlistClicked(id) {
-    window.location = '/browse?playlist=' + id
+    window.location = "playlist?id=" + id;
   }
-
-  songClicked(id) {
-    console.log(id)
-  }
-
-  /*
-  componentDidMount() {
-    let comp = this
-    comms.getPlaylists(function(playlists) {
-      //console.log(playlists)
-      //comp.setState({"playlists": playlists})
-    })
-  }*/
 
   render() {
   	let items = this.state.items.map((item) => {
-      if (!this.state.playlist)
-        return (<SongItem onClick={(e) => this.songClicked(item.id)} song={item} key={item.name}/>)
-      else
         return (<PlaylistItem onClick={(e) => this.playlistClicked(item.id)} playlist={item} key={item.name}/>)
     })
     
