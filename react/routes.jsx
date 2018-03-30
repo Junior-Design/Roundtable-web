@@ -10,6 +10,7 @@ import PlaylistPage from './pages/PlaylistPage';
 import FriendsPage from './pages/FriendsPage';
 import TestAPIPage from './pages/TestAPIPage';
 import NotFoundPage from './pages/NotFoundPage';
+import UserPage from './pages/UserPage';
 
 
 //Order of routes matter!! * be last
@@ -21,6 +22,7 @@ const routes = (
       <Route path="browse"          component={BrowsePage} />
       <Route path="playlist"       component={PlaylistPage} />
       <Route path="friends"         component={FriendsPage} />
+      <Route path="user"            component={UserPage} />
       {/* <Route path="/testapi"        component={TestAPIPage} /> */}
       <Route path="*"               component={NotFoundPage} />
     </Route>
