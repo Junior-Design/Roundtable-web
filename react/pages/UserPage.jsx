@@ -8,6 +8,7 @@ export default class UserPage extends React.Component {
   constructor(props) {
     super(props);
     let id = this.props.location.query.id
+    this.state = {"userId":id}
     this.loadUserPlaylists(id);
   }
 
@@ -17,7 +18,7 @@ export default class UserPage extends React.Component {
     })
   }
   playListClicked(id) {
-    console.log(id);
+    window.location = "playlist?id=" + id + "&userId=" + this.state.userId;
   }
 
   render() {
