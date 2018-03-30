@@ -24,8 +24,7 @@ export class FriendItem extends React.Component {
   render() {
     return (
   		<div className="FriendItem" style={{"marginBottom":"12px"}}>
-        </span>
-        <span style={{"fontSize": "1.25em", "marginRight":"15px"}}>{this.props.friend.name</span>
+        <span style={{"fontSize": "1.25em", "marginRight":"15px"}}>{this.props.friend.name}</span>
       </div>
     );
   }
