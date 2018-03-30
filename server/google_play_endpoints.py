@@ -2,6 +2,7 @@ from flask import request
 from flask_app import app
 import gmusicapi
 import model
+import firebase
 
 # `gmusicapi` API Reference:
 # https://unofficial-google-music-api.readthedocs.io/en/latest/
@@ -76,6 +77,11 @@ def gmusicapi_client():
         
         if client.is_authenticated():
             __existing_gmusicapi_client = client
+            
+            # save the user to our users database
+            user = model.User.for_google_play_username(username)
+            firebase.set_data("users/" + user.id, model.from_json(model.to_json(user)))
+            
             return client
         else:
             return None

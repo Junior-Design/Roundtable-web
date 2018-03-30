@@ -12,8 +12,11 @@ class User:
         self.name = name
         self.platform = platform
 
-    def from_google_play_response(response):
-        return User()
+    def for_google_play_username(username):
+        return User(
+            id=username,
+            name=username,
+            platform="Google Play")
 
     def from_spotify_response(response):
         return User(
