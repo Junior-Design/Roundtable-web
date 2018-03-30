@@ -81,6 +81,10 @@ const comms = {
   getPlaylistSongs(playlistId, callback) {
     let route = '/{service}/playlists/' + playlistId
     comms.get_roundtable(route, {}, callback)
+  },
+
+  getFriends(callback) {
+    comms.get_roundtable('/users/friends', {}, callback)
   }
   
 }
