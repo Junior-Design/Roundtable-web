@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { Button1 } from '../components/buttons';
-import { PlaylistItem } from '../components/PlaylistItem';
-import { SongItem } from '../components/SongItem';
+import PlaylistItem from '../components/PlaylistItem';
+import SongItem from '../components/SongItem';
 
 import comms from '../comms';
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import { Button1 } from '../components/buttons';
 import SongList from '../components/SongItem';
+import { FriendItem } from '../components/FriendItem';
 
 import comms from '../comms';
 
@@ -32,11 +33,11 @@ export default class FriendsPage extends React.Component {
     
     render() {
         let friends =this.state.friends.map(function(friend) {
-            return (<Friend friend={friend}/>)
+            return (<FriendItem friend={friend}/>)
         })
 
     return (
-        <div className="Friend">
+        <div className="FriendItem">
              { friends }
         </div>);
     }
