@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { Button1 } from '../components/buttons';
-import { SongItem } from '../components/FriendItem';
+import { FriendItem } from '../components/FriendItem';
 
 import comms from '../comms';
 
