@@ -17,10 +17,13 @@ import firebase
 
 @app.route('/spotify/user', methods=['GET'])
 def spotify_user():
-    client = spotify_client()
-    me_response = client.me()
-    user = model.User.from_spotify_response(me_response)
-    return model.to_json(user)
+    try:
+        client = spotify_client()
+        me_response = client.me()
+        user = model.User.from_spotify_response(me_response)
+        return model.to_json(user)
+    except:
+        return "{'error': 'Could not fetch information about the current user. The current token may not be valid.'}"
 
 @app.route('/spotify/playlists', methods=['GET'])
 def spotify_playlists():

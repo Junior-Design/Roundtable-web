@@ -4,10 +4,23 @@ from flask_app import app
 import global_vars
 import model
 import firebase
+import spotify_endpoints
 
 ######################
 # Firebase Endpoints #
 ######################
+
+def user_id_of_current_user():
+    if request.headers.get('spotify-token') != None:
+        user = model.from_json(spotify_endpoints.spotify_user())
+        if 'id' in user:
+            return user['id']
+        else:
+            return None
+    elif request.headers.get('google-play-username') != None:
+        return request.headers.get('google-play-username')
+    else:
+        return None
 
 @app.route('/users', methods=['GET'])
 def database_users():
@@ -19,7 +32,12 @@ def database_users():
         # don't return all of the playlists as a part of this response
         user.pop('playlists', None)
         users.append(user)
-
+    
+    # if there is a user logged in with this request, remove them from the list
+    current_user_id = user_id_of_current_user()
+    if current_user_id != None:
+        users = list(filter(lambda user: user['id'] != current_user_id, users))
+    
     return model.to_json(users)
 
 @app.route('/users/<path:user_id>/playlists', methods=['GET'])
