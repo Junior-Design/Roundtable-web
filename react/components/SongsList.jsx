@@ -14,7 +14,7 @@ export default class SongsList extends React.Component {
 
   loadSongsInPlaylist(id, userId) {
     if (userId) {
-      comms.getUserPlaylistSongs(id, userId, (songs) => {
+      comms.getUserPlaylistSongs(userId, id, (songs) => {
         this.setState({"items": songs})
       })
     } else {

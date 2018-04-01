@@ -13,18 +13,24 @@ const imageStyle = {
 
 export class FriendItem extends React.Component {
   
-  componentWillMount() {
+  constructor(props) {
+    super(props)
+
     if (this.props.friend.id != undefined && this.props.friend.name!= "") {
-      this.state = {"friend": this.props.friend.name}
+      this.state = {"name": this.props.friend.name, "id": this.props.friend.id }
     } else {
       this.state = {"friend": 'no friend found'}
     }
   }
+
+  onClick() {
+    this.props.onClick(this.state.id);
+  }
   
   render() {
     return (
-  		<div className="FriendItem" style={{"marginBottom":"12px"}}>
-        <span style={{"fontSize": "1.25em", "marginRight":"15px"}}>{this.props.friend.name}</span>
+  		<div onClick={(e) => this.onClick()} className="FriendItem" style={{"marginBottom":"12px"}}>
+        <span style={{"fontSize": "1.25em", "marginRight":"15px"}}>{this.state.name}</span>
       </div>
     );
   }

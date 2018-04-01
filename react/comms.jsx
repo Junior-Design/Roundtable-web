@@ -79,12 +79,12 @@ const comms = {
   },
 
   getUserPlaylists(userId, callback) {
-    let route = '/user/' + userId + '/playlists'
+    let route = '/users/' + userId + '/playlists'
     comms.get_roundtable(route, {}, callback)
   },
 
   getUserPlaylistSongs(userId, playlistId, callback) {
-    let route = '/user/' + userId + '/playlists/' + playlistId
+    let route = '/users/' + userId + '/playlists/' + playlistId
     comms.get_roundtable(route, {}, callback)
   },
 
