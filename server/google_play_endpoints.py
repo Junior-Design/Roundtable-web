@@ -40,6 +40,31 @@ def google_play_playlist(playlist_id):
     
     return model.to_json({"error": "Could not find playlist with id '" + str(playlist_id) + "'"})
 
+@app.route('/google-play/save-to-firebase')
+def save_google_play_data_to_firebase(username=None):
+    # save the user to our users database
+    if username is None:
+        username = request.headers.get('google-play-username')
+    if username is None:
+        return "{'error': 'no user specified'}"
+    
+    user = model.from_json(model.to_json(model.User.for_google_play_username(username)))
+    
+    # fetch and save all of the playlists
+    playlists = model.from_json(google_play_playlists())
+    
+    for playlist in playlists:
+        if 'error' in playlist:
+            continue
+        songs = model.from_json(google_play_playlist(playlist['id']))
+        playlist['songs'] = songs
+    
+    user['playlists'] = playlists
+    
+    firebase.set_data("users/" + user['id'], user)
+    print("Successfully wrote " + str(username) + "'s Google Play Music data to Firebase")
+    return "{}"
+
 ##########################
 # gmusicapi Client Setup #
 ##########################
@@ -79,8 +104,7 @@ def gmusicapi_client():
             __existing_gmusicapi_client = client
             
             # save the user to our users database
-            user = model.User.for_google_play_username(username)
-            firebase.set_data("users/" + user.id, model.from_json(model.to_json(user)))
+            save_google_play_data_to_firebase(username=username)
             
             return client
         else:
