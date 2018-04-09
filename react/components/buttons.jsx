@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-const button1Style = {
+const libraryButtonStyle = {
   backgroundColor:"#44c767",
   borderRadius:"28px",
   border:"1px solid #18ab29",
@@ -11,14 +11,15 @@ const button1Style = {
   fontFamily:"Objektiv",
   fontSize:"17px",
   padding:"14px 18px",
+  margin:"8px 0px 0px 0px",
   textDecoration:"none",
   textShadow:"0px 1px 0px #2f6627"
 }
 
-export class Button1 extends React.Component {
+export class AddToLibraryButton extends React.Component {
   render() {
     return (
-      <span style={button1Style}>{this.props.children}</span>
+      <div style={libraryButtonStyle}>{this.props.children}</div>
     );
   }
 }

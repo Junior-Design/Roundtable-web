@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import SongItem from '../components/SongItem';
+import { AddToLibraryButton } from '../components/buttons';
 
 import comms from '../comms';
 
@@ -30,9 +31,12 @@ export default class SongsList extends React.Component {
     })
     
     return (
-    	<ul style={{"padding":0, "listStyle":"none"}}>
+    <div>
+      <AddToLibraryButton>Add to Library</AddToLibraryButton>
+      <ul style={{"padding":0, "listStyle":"none"}}>
     		{items}
     	</ul>
+    </div>
     );
   }
 }
