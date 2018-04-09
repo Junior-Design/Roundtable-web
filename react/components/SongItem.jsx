@@ -4,33 +4,50 @@ import styled from 'styled-components';
 
 
 const imageStyle = {
-  width: '75px',
-  height: '75px',
+  width: '50px',
+  height: '50px',
   marginRight: '10px',
-  display: 'inline-block',
-  verticalAlign: 'middle'
+}
+
+const rowStyle = {
+  display: "flex",
+  alignItems: "center"
 }
 
 export default class SongItem extends React.Component {
   
-  componentWillMount() {
-    if (this.props.song.album_art_url != undefined 
-      && this.props.song.album_art_url != "") 
-    {
-      this.state = {"image": this.props.song.album_art_url}
-    } else {
-      this.state = {"image": '/assets/images/music-placeholder.png'}
-    }
+  constructor(props) {
+    super(props);
+
+    let name = props.song.name;
+    if (name.length > 30)
+      name = name.substring(0, 27) + "...";
+
+
+      let image = props.song.album_art_url;
+      if (!(image != undefined && image != "")) {
+        image = '/assets/images/music-placeholder.png';
+      }
+  
+      this.state = {"name":name, "image":image};
   }
   
   render() {
     return (
   		<div className="songItem" style={{"marginBottom":"12px"}}>
-        <span>
-          <img src={this.state.image} style={imageStyle} />
-        </span>
-        <span style={{"fontSize": "1.25em", "marginRight":"15px"}}>{this.props.song.name}</span>
-        <span style={{"fontSize": "0.75em"}}>{this.props.song.artist}</span>
+        <div style={rowStyle}>
+          <div className="coverImg">
+            <img src={this.state.image} style={imageStyle} />
+          </div>
+          <div>
+            <div style={rowStyle}>
+              <div style={{"fontSize": "15px"}}>{this.state.name}</div>
+            </div>
+            <div style={rowStyle}>
+              <div style={{"fontSize": "10px"}}>{this.props.song.artist}</div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

@@ -23,7 +23,7 @@ export default class UserPage extends React.Component {
 
   render() {
     let items = this.state.items.map((item) => {
-        return (<PlaylistItem onClick={(e) => this.playlistClicked(item.id)} playlist={item} key={item.name}/>)
+        return (<PlaylistItem onClick={(e) => this.playlistClicked(item.id)} owned={false} playlist={item} key={item.name}/>)
     })
 
     return (
