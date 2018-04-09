@@ -9,7 +9,7 @@ const libraryButtonStyle = {
   cursor:"pointer",
   color:"#ffffff",
   fontFamily:"Objektiv",
-  fontSize:"17px",
+  fontSize:"14px",
   padding:"14px 18px",
   margin:"8px 0px 0px 0px",
   textDecoration:"none",
