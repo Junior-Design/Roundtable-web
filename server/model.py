@@ -54,7 +54,7 @@ class Playlist:
             platform="Spotify",
             id=response['id'],
             owner_name=response['owner']['display_name'],
-            image_url=response['images'][0]['url'])
+            image_url=(None if len(response['images']) == 0 else response['images'][0]['url']))
 
 
 class Song:
