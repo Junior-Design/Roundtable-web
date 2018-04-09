@@ -7,9 +7,14 @@ const imageStyle = {
   width: '50px',
   height: '50px',
   marginRight: '10px',
-  display: 'inline-block',
-  verticalAlign: 'middle'
 }
+
+const rowStyle = {
+  display: "flex",
+  alignItems: "center",
+  width:"100%"
+}
+
 
 const itemStyle = {
   display: 'flex',
@@ -26,8 +31,7 @@ const buttonStyle = {
   fontSize: '50px',
   color: 'white',
   border: 'none',
-  marginRight: '10px',
-  marginTop: '10px',
+  marginLeft: "auto",
   background: 'none'
 }
 
@@ -56,19 +60,30 @@ export default class PlaylistItem extends React.Component {
       image = '/assets/images/music-placeholder.png';
     }
 
-    this.state = {"name":name, "image":image};
+    this.state = {"name":name, "image":image, "owned":props.owned};
   }
   
   render() {
+    let b = (<button style={buttonStyle}>+</button>);
+    if (this.state.owned)
+      b = null;
+
     return (
   		<li className="playlistItem" onClick={this.props.onClick} style={itemStyle}>
-        <span style={{'marginTop':'12px'}}>
-          <img src={this.state.image} style={imageStyle} />
-          <span style={{'verticalAlign':'middle', 'fontSize':"1em", 'display':'inline-block'}}>{this.state.name}</span>
-        </span>
-        <span style={{'verticalAlign':'middle'}}>
-          <button style={buttonStyle}>+</button>
-        </span>
+        <div style={rowStyle}>
+          <div className="coverImage">
+            <img src={this.state.image} style={imageStyle} />
+          </div>
+          <div>
+            <div style={rowStyle}>
+              {this.state.name}
+            </div>
+          </div>
+
+          <div style={{marginLeft:"auto"}}>
+            {b}
+          </div>
+        </div>
       </li>
     );
   }
