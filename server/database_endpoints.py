@@ -56,8 +56,7 @@ def user_playlists(user_id):
 
     return model.to_json(playlists)
 
-@app.route('/users/<path:user_id>/playlists/<path:playlist_id>', methods=['GET'])
-def user_playlist_songs(user_id, playlist_id):
+def user_playlist(user_id, playlist_id):
     user_dict = firebase.get_data("users")
     user = user_dict[user_id]
     if user == None:
@@ -65,8 +64,14 @@ def user_playlist_songs(user_id, playlist_id):
     
     playlist = list(filter(lambda playlist: playlist['id'] == playlist_id, user['playlists']))[0]
     if playlist == None:
-       return "{'error': 'could not find playlist with given id'}"
+        return "{'error': 'could not find playlist with given id'}"
+
+    return model.to_json(playlist)
+
+@app.route('/users/<path:user_id>/playlists/<path:playlist_id>', methods=['GET'])
+def user_playlist_songs(user_id, playlist_id):
+    playlist = user_playlist(user_id, playlist_id)
+    if 'error' in playlist or playlist is None:
+        return "{'error': 'could not load the given playlist'}"
     
     return model.to_json(playlist['songs'])
-
-    return model.to_json(playlists)
