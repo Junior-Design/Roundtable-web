@@ -25,14 +25,17 @@ export default class SongsList extends React.Component {
     }
   }
 
+  //this.props.state.id might be current playlist id
+  //or just "id"
   render() {
   	let items = this.state.items.map((item) => {
       return (<SongItem onClick={(e) => this.props.songClicked(item.id)} song={item} key={item.name}/>)
     })
     
+
     return (
     <div>
-      <AddToLibraryButton>Add to Library</AddToLibraryButton>
+      <AddToLibraryButton onClick={(e) => this.props.state.id}>Add to Library</AddToLibraryButton>
       <ul style={{"padding":0, "listStyle":"none"}}>
     		{items}
     	</ul>

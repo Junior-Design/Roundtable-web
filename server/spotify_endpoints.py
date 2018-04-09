@@ -5,6 +5,7 @@ import global_vars
 import model
 import spotify
 import firebase
+import database_endpoints as database
 
 # `spotify` API Reference:
 # https://github.com/steinitzu/spotify-api
@@ -36,7 +37,7 @@ def spotify_playlists():
 def spotify_playlist(playlist_id):
     client = spotify_client()
     user = model.from_json(spotify_user())
-    
+
     try:
         # max `limit` is 100 songs -- we would have to handle paging to get ~all~ of the songs.
         songs_response = client.user_playlist_tracks(user['id'], playlist_id, limit=100)
@@ -49,20 +50,50 @@ def spotify_playlist(playlist_id):
 def save_spotify_data_to_firebase():
     # save the user to our users database
     user = model.from_json(spotify_user())
-    
+
     # fetch and save all of the playlists
     playlists = model.from_json(spotify_playlists())
-    
+
     for playlist in playlists:
         if 'error' in playlist:
             continue
         songs = model.from_json(spotify_playlist(playlist['id']))
         playlist['songs'] = songs
-    
+
     user['playlists'] = playlists
-    
+
     firebase.set_data("users/" + user['id'], user)
     return "{}"
+
+@app.route('/spotify/import-spotify-playlist/<path:user_id>/<path:playlist_id>')
+def import_spotify_playlist_to_spotify(user_id, playlist_id):
+    playlist_owner = firebase.get_data("users/" + user_id)
+    if playlist_owner is None:
+        return "{'error': 'User could not be found.'}" 
+    
+    playlist = model.from_json(database.user_playlist(user_id, playlist_id))
+    if playlist is None:
+        return "{'error': 'Playlist could not be found.'}"
+    
+    current_user = model.from_json(spotify_user())
+    client = spotify_client()
+    
+    # create the new playlist
+    response = client.user_playlist_create(
+        current_user['id'], 
+        playlist['name'], 
+        description="Imported from Roundtable. Originally created by " + playlist_owner['name'] + ".")
+    
+    new_playlist_id = response['id']
+    
+    source_playlist_songs = playlist['songs']
+    track_uris = list(map(lambda song: "spotify:track:" + song['id'], source_playlist_songs))
+    
+    # copy the songs into the new playlist
+    client.user_playlist_tracks_add(current_user['id'], new_playlist_id, track_uris)
+    
+    return "Success!"
+    
 
 #####################
 # Spotify auth flow #
@@ -88,12 +119,12 @@ def spotify_auth_callback():
     oauth = spotify_oauth()
     oauth.request_token(request.url)
     token = oauth.token
-    
+
     global global_token
     global_token = token['access_token']
     save_spotify_data_to_firebase()
     global_token = None
-    
+
     return redirect("/login?token=" + token['access_token'] + "&expires_in=" + str(token['expires_in']))
 
 def spotify_oauth():
@@ -101,7 +132,13 @@ def spotify_oauth():
         '1bfb013a55474809b040bd6934ff7ee5',
         '53eb0eba01dd44aebaa0414d550b2aaa',
         redirect_uri=(global_vars.protocol + '://localhost:3000/spotify/auth/callback'),
-        scopes=['user-read-private', 'user-top-read'])
+        scopes=['user-read-private', 
+                'user-top-read', 
+                'playlist-read-private', 
+                'playlist-modify-private', 
+                'playlist-modify-public', 
+                'user-library-modify',
+                'playlist-read-collaborative'])
 
 def spotify_client():
     oauth = spotify_oauth()
@@ -117,3 +154,8 @@ def spotify_client():
 
     return spotify.Client(oauth).api
 
+def get_song_from_title_artist_album(title, artist, album):
+    q = "track:" + str(title) + " artist:" + str(artist) + " album:" + str(album)
+    search_results = spotify_client().search(q, 'track', limit=2)
+    first_track = search_results['tracks']['items'][0]
+    return first_track['id']

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Sidebar, SidebarItem } from 'react-responsive-sidebar';
 import { Link } from 'react-router';
+import { AsyncStorage } from 'react'
 import MainLayoutHeader from './MainLayoutHeader';
 
 const containerStyle = {
@@ -40,6 +41,7 @@ export default class MainLayout extends React.Component {
       <Link to='/browse' style={linkStyle}><SidebarItem nav="browse">Browse</SidebarItem></Link>,
       <Link to='/playlists' style={linkStyle}><SidebarItem nav="playlists">Playlists</SidebarItem></Link>,
       <Link to='/friends' style={linkStyle}><SidebarItem nav="friends">Friends</SidebarItem></Link>,
+      <Link to='/' style={linkStyle}><SidebarItem nav="logout">Logout</SidebarItem></Link>,
     ];
 
     return (
