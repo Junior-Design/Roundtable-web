@@ -36,7 +36,7 @@ def spotify_playlists():
 def spotify_playlist(playlist_id):
     client = spotify_client()
     user = model.from_json(spotify_user())
-    
+
     try:
         # max `limit` is 100 songs -- we would have to handle paging to get ~all~ of the songs.
         songs_response = client.user_playlist_tracks(user['id'], playlist_id, limit=100)
@@ -49,18 +49,18 @@ def spotify_playlist(playlist_id):
 def save_spotify_data_to_firebase():
     # save the user to our users database
     user = model.from_json(spotify_user())
-    
+
     # fetch and save all of the playlists
     playlists = model.from_json(spotify_playlists())
-    
+
     for playlist in playlists:
         if 'error' in playlist:
             continue
         songs = model.from_json(spotify_playlist(playlist['id']))
         playlist['songs'] = songs
-    
+
     user['playlists'] = playlists
-    
+
     firebase.set_data("users/" + user['id'], user)
     return "{}"
 
@@ -88,12 +88,12 @@ def spotify_auth_callback():
     oauth = spotify_oauth()
     oauth.request_token(request.url)
     token = oauth.token
-    
+
     global global_token
     global_token = token['access_token']
     save_spotify_data_to_firebase()
     global_token = None
-    
+
     return redirect("/login?token=" + token['access_token'] + "&expires_in=" + str(token['expires_in']))
 
 def spotify_oauth():
@@ -117,3 +117,8 @@ def spotify_client():
 
     return spotify.Client(oauth).api
 
+def get_song_from_title_artist_album(title, artist, album):
+    q = "track:" + str(title) + " artist:" + str(artist) + " album:" + str(album)
+    search_results = spotify_client().search(q, 'track', limit=2)
+    first_track = search_results['tracks']['items'][0]
+    return first_track['id']
