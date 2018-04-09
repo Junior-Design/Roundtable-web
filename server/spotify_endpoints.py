@@ -5,6 +5,7 @@ import global_vars
 import model
 import spotify
 import firebase
+import database_endpoints as database
 
 # `spotify` API Reference:
 # https://github.com/steinitzu/spotify-api
@@ -64,6 +65,36 @@ def save_spotify_data_to_firebase():
     firebase.set_data("users/" + user['id'], user)
     return "{}"
 
+@app.route('/spotify/import-spotify-playlist/<path:user_id>/<path:playlist_id>')
+def import_spotify_playlist_to_spotify(user_id, playlist_id):
+    playlist_owner = firebase.get_data("users/" + user_id)
+    if playlist_owner is None:
+        return "{'error': 'User could not be found.'}" 
+    
+    playlist = model.from_json(database.user_playlist(user_id, playlist_id))
+    if playlist is None:
+        return "{'error': 'Playlist could not be found.'}"
+    
+    current_user = model.from_json(spotify_user())
+    client = spotify_client()
+    
+    # create the new playlist
+    response = client.user_playlist_create(
+        current_user['id'], 
+        playlist['name'], 
+        description="Imported from Roundtable. Originally created by " + playlist_owner['name'] + ".")
+    
+    new_playlist_id = response['id']
+    
+    source_playlist_songs = playlist['songs']
+    track_uris = list(map(lambda song: "spotify:track:" + song['id'], source_playlist_songs))
+    
+    # copy the songs into the new playlist
+    client.user_playlist_tracks_add(current_user['id'], new_playlist_id, track_uris)
+    
+    return "Success!"
+    
+
 #####################
 # Spotify auth flow #
 #####################
@@ -101,7 +132,13 @@ def spotify_oauth():
         '1bfb013a55474809b040bd6934ff7ee5',
         '53eb0eba01dd44aebaa0414d550b2aaa',
         redirect_uri=(global_vars.protocol + '://localhost:3000/spotify/auth/callback'),
-        scopes=['user-read-private', 'user-top-read'])
+        scopes=['user-read-private', 
+                'user-top-read', 
+                'playlist-read-private', 
+                'playlist-modify-private', 
+                'playlist-modify-public', 
+                'user-library-modify',
+                'playlist-read-collaborative'])
 
 def spotify_client():
     oauth = spotify_oauth()
