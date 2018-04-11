@@ -34,7 +34,7 @@ export default class SongsList extends React.Component {
     
 
     return (
-    <div>
+    <div style={{textAlign:"right"}}>
       <AddToLibraryButton onClick={(e) => this.props.state.id}>Add to Library</AddToLibraryButton>
       <ul style={{"padding":0, "listStyle":"none"}}>
     		{items}

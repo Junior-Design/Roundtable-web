@@ -62,15 +62,15 @@ def user_playlist(user_id, playlist_id):
     if user == None:
         return "{'error': 'could not find user with given id'}"
     
-    playlist = list(filter(lambda playlist: playlist['id'] == playlist_id, user['playlists']))[0]
-    if playlist == None:
+    playlist_matches = list(filter(lambda playlist: playlist['id'] == playlist_id, user['playlists']))
+    if len(playlist_matches) == 0:
         return "{'error': 'could not find playlist with given id'}"
 
-    return model.to_json(playlist)
+    return model.to_json(playlist_matches[0])
 
 @app.route('/users/<path:user_id>/playlists/<path:playlist_id>', methods=['GET'])
 def user_playlist_songs(user_id, playlist_id):
-    playlist = user_playlist(user_id, playlist_id)
+    playlist = model.from_json(user_playlist(user_id, playlist_id))
     if 'error' in playlist or playlist is None:
         return "{'error': 'could not load the given playlist'}"
     
