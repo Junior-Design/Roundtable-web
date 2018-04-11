@@ -70,7 +70,7 @@ def user_playlist(user_id, playlist_id):
 
 @app.route('/users/<path:user_id>/playlists/<path:playlist_id>', methods=['GET'])
 def user_playlist_songs(user_id, playlist_id):
-    playlist = user_playlist(user_id, playlist_id)
+    playlist = model.from_json(user_playlist(user_id, playlist_id))
     if 'error' in playlist or playlist is None:
         return "{'error': 'could not load the given playlist'}"
     
