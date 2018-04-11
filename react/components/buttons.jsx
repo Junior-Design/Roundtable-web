@@ -9,9 +9,9 @@ const libraryButtonStyle = {
   cursor:"pointer",
   color:"#ffffff",
   fontFamily:"Objektiv",
-  fontSize:"14px",
+  fontSize:"10px",
   padding:"14px 18px",
-  margin:"8px 0px 0px 0px",
+  margin:"8px 8px 0px 0px",
   textDecoration:"none",
   textShadow:"0px 1px 0px #2f6627"
 }
