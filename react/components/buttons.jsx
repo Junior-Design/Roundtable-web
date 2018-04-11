@@ -6,6 +6,7 @@ const libraryButtonStyle = {
   borderRadius:"28px",
   border:"1px solid #18ab29",
   display:"inline-block",
+  float:"right",
   cursor:"pointer",
   color:"#ffffff",
   fontFamily:"Objektiv",
