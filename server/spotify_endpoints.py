@@ -65,14 +65,14 @@ def save_spotify_data_to_firebase():
     firebase.set_data("users/" + user['id'], user)
     return "{}"
 
-@app.route('/spotify/import-spotify-playlist/<path:user_id>/<path:playlist_id>')
+@app.route('/spotify/import-playlist/<path:user_id>/<path:playlist_id>')
 def import_spotify_playlist_to_spotify(user_id, playlist_id):
     playlist_owner = firebase.get_data("users/" + user_id)
-    if playlist_owner is None:
+    if playlist_owner is None or 'error' in playlist_owner:
         return "{'error': 'User could not be found.'}" 
     
     playlist = model.from_json(database.user_playlist(user_id, playlist_id))
-    if playlist is None:
+    if playlist is None or 'error' in playlist or 'songs' not in playlist:
         return "{'error': 'Playlist could not be found.'}"
     
     current_user = model.from_json(spotify_user())
@@ -84,16 +84,30 @@ def import_spotify_playlist_to_spotify(user_id, playlist_id):
         playlist['name'], 
         description="Imported from Roundtable. Originally created by " + playlist_owner['name'] + ".")
     
-    new_playlist_id = response['id']
-    
     source_playlist_songs = playlist['songs']
-    track_uris = list(map(lambda song: "spotify:track:" + song['id'], source_playlist_songs))
+    
+    if playlist_owner['platform'] == 'Spotify':
+        # if importing from Spotify to Spotify, just use the source track IDs
+        track_uris = list(map(lambda song: "spotify:track:" + song['id'], source_playlist_songs))
+    else:
+        # if importing from a foreign platform, must search by song
+        track_uris = list(map(search_for_spotify_song_id, source_playlist_songs))
+        track_uris = list(filter(lambda song_id: song_id is not None, track_uris))
     
     # copy the songs into the new playlist
+    new_playlist_id = response['id']
     client.user_playlist_tracks_add(current_user['id'], new_playlist_id, track_uris)
     
     return "Success!"
     
+def search_for_spotify_song_id(song):
+    try:
+        q = "track:" + str(song['name']) + " artist:" + str(song['artist']) + " album:" + str(song['album'])
+        search_results = spotify_client().search(q, 'track', limit=2)
+        first_track = search_results['tracks']['items'][0]
+        return "spotify:track:" + str(first_track['id'])
+    except:
+        return None
 
 #####################
 # Spotify auth flow #
@@ -153,9 +167,3 @@ def spotify_client():
         oauth.token = {'access_token': global_token}
 
     return spotify.Client(oauth).api
-
-def get_song_from_title_artist_album(title, artist, album):
-    q = "track:" + str(title) + " artist:" + str(artist) + " album:" + str(album)
-    search_results = spotify_client().search(q, 'track', limit=2)
-    first_track = search_results['tracks']['items'][0]
-    return first_track['id']
