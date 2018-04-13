@@ -95,6 +95,11 @@ const comms = {
 
   getFriends(callback) {
     comms.get_roundtable('/users', {}, callback)
+  },
+
+  importPlaylist(userId, playlistId, callback) {
+    let route = '/{service}/import-playlist/' + userId + '/' + playlistId;
+    comms.get_roundtable(route, {}, callback)
   }
   
 }
