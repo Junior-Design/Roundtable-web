@@ -66,7 +66,7 @@ def save_spotify_data_to_firebase():
     return "{}"
 
 @app.route('/spotify/import-playlist/<path:user_id>/<path:playlist_id>')
-def import_spotify_playlist_to_spotify(user_id, playlist_id):
+def import_playlist_to_spotify(user_id, playlist_id):
     playlist_owner = firebase.get_data("users/" + user_id)
     if playlist_owner is None or 'error' in playlist_owner:
         return "{'error': 'User could not be found.'}" 

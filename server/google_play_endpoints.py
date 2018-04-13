@@ -3,6 +3,7 @@ from flask_app import app
 import gmusicapi
 import model
 import firebase
+import database_endpoints as database
 
 # `gmusicapi` API Reference:
 # https://unofficial-google-music-api.readthedocs.io/en/latest/
@@ -65,6 +66,48 @@ def save_google_play_data_to_firebase(username=None):
     print("Successfully wrote " + str(username) + "'s Google Play Music data to Firebase")
     return "{}"
 
+@app.route('/google-play/import-playlist/<path:user_id>/<path:playlist_id>')
+def import_playlist_to_google_play(user_id, playlist_id):
+    playlist_owner = firebase.get_data("users/" + user_id)
+    if playlist_owner is None or 'error' in playlist_owner:
+        return "{'error': 'User could not be found.'}" 
+    
+    playlist = model.from_json(database.user_playlist(user_id, playlist_id))
+    if playlist is None or 'error' in playlist or 'songs' not in playlist:
+        return "{'error': 'Playlist could not be found.'}"
+    
+    username = request.headers.get('google-play-username')
+    client = gmusicapi_client()
+    
+    # create the new playlist
+    new_playlist_id = client.create_playlist(
+        playlist['name'], 
+        description="Imported from Roundtable. Originally created by " + playlist_owner['name'] + ".")
+    
+    source_playlist_songs = playlist['songs']
+    
+    if playlist_owner['platform'] == 'Google Play':
+        # if importing from Google Play to Google Play, just use the source track IDs
+        track_ids = list(map(lambda song: song['id'], source_playlist_songs))
+    else:
+        # if importing from a foreign platform, must search by song
+        track_ids = list(map(search_for_google_play_song_id, source_playlist_songs))
+        track_ids = list(filter(lambda song_id: song_id is not None, track_ids))
+    
+    # copy the songs into the new playlist
+    client.add_songs_to_playlist(new_playlist_id, track_ids)
+    return "Created playlist " + str(new_playlist_id)
+    
+    return "Success!"
+
+def search_for_google_play_song_id(song):
+    q = str(song['artist']) + " - " + str(song['name'])
+    if song['album'] is not None:
+        q = q + " - " + str(song['album'])
+    search_results = gmusicapi_client().search(q, max_results=2)
+    first_song = search_results["song_hits"][0]
+    return first_song["track"]["storeId"]
+
 ##########################
 # gmusicapi Client Setup #
 ##########################
@@ -109,11 +152,3 @@ def gmusicapi_client():
             return client
         else:
             return None
-
-def get_song_from_title_artist(title, artist, album=None):
-    q = str(artist) + " - " + str(title)
-    if album is not None:
-        q = q + " - " + str(album)
-    search_results = gmusicapi_client().search(q, max_results=2)
-    first_song = search_results["song_hits"][0]
-    return first_song["track"]["nid"]
