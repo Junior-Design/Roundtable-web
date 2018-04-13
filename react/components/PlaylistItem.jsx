@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import styled from 'styled-components';
-
+import comms from '../comms';
 
 const imageStyle = {
   width: '50px',
@@ -28,10 +28,9 @@ const itemStyle = {
 const buttonStyle = {
   width: '50px',
   height: '50px',
-  fontSize: '50px',
   color: 'white',
   border: 'none',
-  marginLeft: "auto",
+  marginRight: "10px",
   background: 'none'
 }
 
@@ -50,6 +49,7 @@ export default class PlaylistItem extends React.Component {
   constructor(props) {
     super(props)
 
+    let userId = props.userId;
     let name = props.playlist.name;
     if (name.length > 23)
       name = name.substring(0, 21) + "...";
@@ -60,28 +60,39 @@ export default class PlaylistItem extends React.Component {
       image = '/assets/images/music-placeholder.png';
     }
 
-    this.state = {"name":name, "image":image, "owned":props.owned};
+    this.state = {"name":name, "image":image, "owned":userId ? false : true};
+  }
+
+  addButtonClick() {
+    comms.importPlaylist(this.props.userId, this.props.playlist.id, (o) => {
+      if (o.status)
+        this.setState({"owned":true});
+    });
   }
   
   render() {
-    let b = (<button style={buttonStyle}>+</button>);
-    if (this.state.owned)
-      b = null;
+    let ownButton = null;
+    if (this.props.userId)
+      ownButton = (<button style={buttonStyle}><span style={{fontSize:"30px"}}>✓</span></button>)
 
     return (
-  		<li className="playlistItem" onClick={this.props.onClick} style={itemStyle}>
+  		<li className="playlistItem" style={itemStyle}>
         <div style={rowStyle}>
-          <div className="coverImage">
+          <div className="coverImage" onClick={this.props.onClick}>
             <img src={this.state.image} style={imageStyle} />
           </div>
-          <div>
+          <div onClick={this.props.onClick}>
             <div style={rowStyle}>
               {this.state.name}
             </div>
           </div>
 
-          <div style={{marginLeft:"auto"}}>
-            {b}
+          <div style={{marginLeft:"auto", marginRight:"10px", width:"50px", height:"50px"}}>
+            {this.state.owned ? 
+              ownButton
+                : 
+              <button style={buttonStyle} onClick={(e)=>this.addButtonClick()}><span style={{fontSize:"40px"}}>+</span></button>
+            }
           </div>
         </div>
       </li>

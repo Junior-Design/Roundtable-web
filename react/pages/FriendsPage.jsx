@@ -33,7 +33,7 @@ export default class FriendsPage extends React.Component {
     
     render() {
         let friends =this.state.friends.map((friend) => {
-            return (<FriendItem onClick={(id) => this.friendClicked(id)} friend={friend}/>)
+            return (<FriendItem onClick={(id) => this.friendClicked(id)} friend={friend} key={friend.id} />)
         })
 
     return (
