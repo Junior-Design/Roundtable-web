@@ -98,7 +98,7 @@ def import_playlist_to_spotify(user_id, playlist_id):
     new_playlist_id = response['id']
     client.user_playlist_tracks_add(current_user['id'], new_playlist_id, track_uris)
     
-    return "{'status': 'success'}"
+    return model.to_json({'status': 'success'})
     
 def search_for_spotify_song_id(song):
     try:

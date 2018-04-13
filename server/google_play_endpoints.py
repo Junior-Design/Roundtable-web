@@ -98,7 +98,7 @@ def import_playlist_to_google_play(user_id, playlist_id):
     client.add_songs_to_playlist(new_playlist_id, track_ids)
     return "Created playlist " + str(new_playlist_id)
     
-    return "{'status': 'success'}"
+    return model.to_json({'status': 'success'})
 
 def search_for_google_play_song_id(song):
     q = str(song['artist']) + " - " + str(song['name'])
