@@ -9,20 +9,27 @@ export default class SongsList extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = {"items" : []}
+    this.state = {"items" : [], "owned":true};
     this.loadSongsInPlaylist(props.playlistId, props.userId);
   }
 
   loadSongsInPlaylist(id, userId) {
     if (userId) {
       comms.getUserPlaylistSongs(userId, id, (songs) => {
-        this.setState({"items": songs})
+        this.setState({"items": songs, "owned":false})
       })
     } else {
       comms.getPlaylistSongs(id, (songs) => {
         this.setState({"items": songs})
       })
     }
+  }
+
+  addButtonClick() {
+    comms.importPlaylist(this.props.userId, this.props.playlist.id, (o) => {
+      if (o.status)
+        this.setState({"owned":true});
+    });
   }
 
   //this.props.state.id might be current playlist id
@@ -32,10 +39,13 @@ export default class SongsList extends React.Component {
       return (<SongItem onClick={(e) => this.props.songClicked(item.id)} song={item} key={item.name}/>)
     })
     
+    let butt = null;
+    if (this.state.owned == false)
+      butt = (<AddToLibraryButton onClick={(e)=>this.addButtonClick()}>Add to Library</AddToLibraryButton>)
 
     return (
     <div style={{textAlign:"right"}}>
-      <AddToLibraryButton onClick={(e) => this.props.state.id}>Add to Library</AddToLibraryButton>
+      {butt}
       <ul style={{"padding":0, "listStyle":"none"}}>
     		{items}
     	</ul>

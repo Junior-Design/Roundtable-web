@@ -18,9 +18,14 @@ const libraryButtonStyle = {
 }
 
 export class AddToLibraryButton extends React.Component {
+
+  addButtonClick() {
+    this.props.onClick()
+  }
+
   render() {
     return (
-      <div style={libraryButtonStyle}>{this.props.children}</div>
+      <div style={libraryButtonStyle} onClick={(e)=>this.addButtonClick()}>{this.props.children}</div>
     );
   }
 }
