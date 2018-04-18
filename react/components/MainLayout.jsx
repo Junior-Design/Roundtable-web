@@ -38,15 +38,14 @@ export default class MainLayout extends React.Component {
   render() {
     const items = [
       <br />,
-      <Link to='/browse' style={linkStyle}><SidebarItem nav="browse">Browse</SidebarItem></Link>,
-      <Link to='/playlists' style={linkStyle}><SidebarItem nav="playlists">Playlists</SidebarItem></Link>,
+      <Link to='/browse' style={linkStyle}><SidebarItem nav="browse">My Playlists</SidebarItem></Link>,
       <Link to='/friends' style={linkStyle}><SidebarItem nav="friends">Friends</SidebarItem></Link>,
       <Link to='/' style={linkStyle}><SidebarItem nav="logout">Logout</SidebarItem></Link>,
     ];
 
     return (
       <div>
-        <Sidebar content={items} onItemSelected={this.onNavButton}>
+        <Sidebar content={items} onItemSelected={this.onNavButton} background={"#376a5d"}>
         <MainLayoutHeader title="roundtable"/>
         <div className="main-content" style={{paddingLeft: '30px'}}>{this.props.children}</div>
         </Sidebar>

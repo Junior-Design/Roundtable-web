@@ -46,7 +46,7 @@ export default class BrowsePage extends React.Component {
 
   render() {
   	let items = this.state.items.map((item) => {
-        return (<PlaylistItem onClick={(e) => this.playlistClicked(item.id)} owned={true} playlist={item} key={item.name}/>)
+        return (<PlaylistItem onClick={(e) => this.playlistClicked(item.id)} playlist={item} key={item.name}/>)
     })
     
     return (
