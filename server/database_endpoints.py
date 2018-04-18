@@ -56,6 +56,7 @@ def user_playlists(user_id):
 
     return model.to_json(playlists)
 
+@app.route('/users/<path:user_id>/playlists/<path:playlist_id>/meta', methods=['GET'])
 def user_playlist(user_id, playlist_id):
     user_dict = firebase.get_data("users")
     user = user_dict[user_id]
