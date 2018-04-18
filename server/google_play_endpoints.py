@@ -43,6 +43,8 @@ def google_play_playlist(playlist_id):
 
 @app.route('/google-play/save-to-firebase')
 def save_google_play_data_to_firebase(username=None):
+    return #disabled for now
+
     # save the user to our users database
     if username is None:
         username = request.headers.get('google-play-username')
