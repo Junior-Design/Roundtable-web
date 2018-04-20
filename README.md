@@ -7,7 +7,30 @@ Team 7302 - Riley Osborn, Phillip Reeder, Gabor Siffel, Cal Stephens, Jake Waldn
 
 ## Release Notes
 
-Coming soon.
+At the end of the semester:
+
+### Features released
+
+- Users can log in with either their Spotify of their Google Play Music accounts
+- Users can view a list of their playlists and other users' playlists
+- Users can view songs within playlists
+- Users can click on "Add to library" on other users' playlists to add the playlist to their own list
+- Users will see any playlists they added to their library within their respective music streaming services
+- Updated to playlists within the music streaming service are updated when the user next logs into Roundtable
+
+### Known bugs / Missing features
+
+- Playlists that the user has in their library but were created by Spotify (ie. the user is "following" a Spotify playlist within their Spotify account) are not available for syncing through Roundtable because the user does not own the playlist.
+- Certain songs from Google Play cannot be seen through Roundtable because they are not usually available on Google Play and do not have the songs metadata available the same way.
+
+### Bug fixes
+
+- We fixed a bug with the metadata of a playlist not being available on a the song list page causing there to not be any identifying information on the song list page.
+- Fixed a bug where thumbnails were not being displayed for Spotify playlists.
+
+### Notes
+
+- When adding a playlist from another user that uses a different music streaming service, songs that aren't available on the users service will just silently not be added.
 
 ## Development / Install Guide
 
