@@ -23,7 +23,7 @@ export default class PlaylistPage extends React.Component {
     super(props);
     let id = this.props.location.query.id
     let userId = this.props.location.query.userId
-    this.state = {"id":id, "userId":userId, "owned": userId == null, "meta":{}}
+    this.state = {"id":id, "userId":userId, "owned": userId == null, "meta":{}, "loading":false}
 
     comms.getPlaylistMeta(userId, id, (meta) => {
       this.setState({"meta":meta});
@@ -32,7 +32,9 @@ export default class PlaylistPage extends React.Component {
   }
 
   addButtonClick() {
+    this.setState({"loading":true});
     comms.importPlaylist(this.state.userId, this.state.id, (o) => {
+      this.setState({"loading":false});
       if (o.status)
         this.setState({"owned":true});
     });
@@ -42,6 +44,8 @@ export default class PlaylistPage extends React.Component {
     let butt = null;
     if (this.state.owned == false)
       butt = (<AddToLibraryButton onClick={(e)=>this.addButtonClick()}/>)
+    //if (this.state.loading)
+      //butt = (<img src="spinner.gif"/>)
 
     return (
       <div>

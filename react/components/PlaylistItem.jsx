@@ -60,20 +60,25 @@ export default class PlaylistItem extends React.Component {
       image = '/assets/images/music-placeholder.png';
     }
 
-    this.state = {"name":name, "image":image, "owned":userId ? false : true};
+    this.state = {"name":name, "image":image, "owned":userId ? false : true, "loading":false};
   }
 
   addButtonClick() {
+    this.setState({"loading":true});
     comms.importPlaylist(this.props.userId, this.props.playlist.id, (o) => {
+      this.setState({"loading":false});
       if (o.status)
         this.setState({"owned":true});
     });
   }
   
   render() {
-    let ownButton = null;
-    if (this.props.userId)
+    let ownButton = <button style={buttonStyle} onClick={(e)=>this.addButtonClick()}><span style={{fontSize:"40px"}}>+</span></button>;
+    if (this.state.owned)
       ownButton = (<button style={buttonStyle}><span style={{fontSize:"30px"}}>✓</span></button>)
+
+    if (this.state.loading)
+      ownButton = (<img src="/assets/images/spinner.gif" width="40px" height="40px"/>)
 
     return (
   		<li className="playlistItem" style={itemStyle}>
@@ -88,11 +93,7 @@ export default class PlaylistItem extends React.Component {
           </div>
 
           <div style={{marginLeft:"auto", marginRight:"10px", width:"50px", height:"50px"}}>
-            {this.state.owned ? 
-              ownButton
-                : 
-              <button style={buttonStyle} onClick={(e)=>this.addButtonClick()}><span style={{fontSize:"40px"}}>+</span></button>
-            }
+            {ownButton}
           </div>
         </div>
       </li>
