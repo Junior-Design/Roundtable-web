@@ -73,8 +73,11 @@ export default class PlaylistItem extends React.Component {
   }
   
   render() {
+    let ownButton = null;
+
+    if (!this.state.owned)
     let ownButton = <button style={buttonStyle} onClick={(e)=>this.addButtonClick()}><span style={{fontSize:"40px"}}>+</span></button>;
-    if (this.state.owned)
+    if (this.state.owned && this.props.userId != null)
       ownButton = (<button style={buttonStyle}><span style={{fontSize:"30px"}}>✓</span></button>)
 
     if (this.state.loading)
