@@ -23,7 +23,7 @@ export default class PlaylistPage extends React.Component {
     super(props);
     let id = this.props.location.query.id
     let userId = this.props.location.query.userId
-    this.state = {"id":id, "userId":userId ? userId, "owned": userId == null, "meta":{}, "loading":false}
+    this.state = {"id":id, "userId":userId, "owned": userId == null, "meta":{}, "loading":false}
 
     comms.getPlaylistMeta(userId ? this.state.userId : "me", id, (meta) => {
       this.setState({"meta":meta});
