@@ -58,6 +58,10 @@ def user_playlists(user_id):
 
 @app.route('/users/<path:user_id>/playlists/<path:playlist_id>/meta', methods=['GET'])
 def user_playlist(user_id, playlist_id):
+    
+    if user_id == "me":
+        user_id = user_id_of_current_user()
+    
     user_dict = firebase.get_data("users")
     user = user_dict[user_id]
     if user == None:
