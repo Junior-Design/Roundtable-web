@@ -34,18 +34,20 @@ export default class PlaylistPage extends React.Component {
   addButtonClick() {
     this.setState({"loading":true});
     comms.importPlaylist(this.state.userId, this.state.id, (o) => {
-      this.setState({"loading":false});
-      if (o.status)
-        this.setState({"owned":true});
+      this.setState({"loading":false, "owned":true});
     });
   }
 
   render() {
-    let butt = null;
-    if (this.state.owned == false)
-      butt = (<AddToLibraryButton onClick={(e)=>this.addButtonClick()}/>)
-    //if (this.state.loading)
-      //butt = (<img src="spinner.gif"/>)
+    let ownButton = null;
+
+    if (!this.state.owned)
+      ownButton = (<button style={buttonStyle} onClick={(e)=>this.addButtonClick()}><span style={{fontSize:"40px"}}>+</span></button>);
+    if (this.state.owned && this.props.userId != null)
+      ownButton = (<button style={buttonStyle}><span style={{fontSize:"30px"}}>✓</span></button>)
+      
+    if (this.state.loading)
+      ownButton = (<img src="/assets/images/spinner.gif" width="40px" height="40px"/>)
 
     return (
       <div>
@@ -59,7 +61,7 @@ export default class PlaylistPage extends React.Component {
                 <div style={{"fontSize": "13px"}}>{this.state.meta.ownerName}</div>
               </div>
             </div>
-            {butt}
+            {ownButton}
           </div>
         </div>
         <SongsList playlistId={this.state.id} userId={this.state.userId} songClicked={(id) => console.log(id)} />
