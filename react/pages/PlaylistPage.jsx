@@ -23,6 +23,7 @@ const buttonStyle = {
   height: '50px',
   color: 'white',
   border: 'none',
+  marginLeft:"auto",
   marginRight: "10px",
   background: 'none'
 }
