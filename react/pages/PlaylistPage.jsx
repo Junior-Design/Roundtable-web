@@ -23,7 +23,7 @@ export default class PlaylistPage extends React.Component {
     super(props);
     let id = this.props.location.query.id
     let userId = this.props.location.query.userId
-    this.state = {"id":id, "userId":userId, "owned": userId == null, "meta":{}, "loading":false}
+    this.state = {"id":id, "userId":userId ? userId, "owned": userId == null, "meta":{}, "loading":false}
 
     comms.getPlaylistMeta(userId, id, (meta) => {
       this.setState({"meta":meta});
@@ -33,7 +33,7 @@ export default class PlaylistPage extends React.Component {
 
   addButtonClick() {
     this.setState({"loading":true});
-    comms.importPlaylist(this.state.userId, this.state.id, (o) => {
+    comms.importPlaylist(this.state.userId ? this.state.userId : "me", this.state.id, (o) => {
       this.setState({"loading":false});
       if (o.status)
         this.setState({"owned":true});
