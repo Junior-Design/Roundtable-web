@@ -48,8 +48,6 @@ def spotify_playlist(playlist_id):
 
 @app.route('/spotify/save-to-firebase')
 def save_spotify_data_to_firebase():
-    return #disabled for now
-
     # save the user to our users database
     user = model.from_json(spotify_user())
 
